@@ -1,0 +1,39 @@
+[user]
+name = Victor Rodriguez
+email = victor.rodriguez.guriz@gmail.com
+signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8svbpnhW1fbLEKhF/9ckmLS0yE1s4GdWt+SlsYb1pe
+[gpg]
+format = ssh
+[core]
+excludesfile = ~/.global_gitignore
+[commit]
+gpgsign = true
+[pull]
+rebase = true
+[rebase]
+autoStash = true
+[init]
+defaultBranch = main
+[include]
+path = ~/.gitconfig-os-specific
+[maintenance]
+repo = /Users/kucho/Git/alacritty-theme
+repo = /Users/kucho/Git/asdf
+repo = /Users/kucho/Git/asdf-direnv
+repo = /Users/kucho/Git/fzf
+repo = /Users/kucho/Git/nerd-fonts
+repo = /Users/kucho/Git/zcolors
+repo = /Users/kucho/Git/zsh-autocomplete
+repo = /Users/kucho/Git/zsh-autosuggestions
+repo = /Users/kucho/Git/zsh-completions
+repo = /Users/kucho/Git/zsh-snap
+repo = /Users/kucho/Git/zsh-syntax-highlighting
+repo = /Users/kucho/Git/zsh-you-should-use
+repo = /Users/kucho/Git/MichaelAquilina/zsh-you-should-use
+repo = /Users/kucho/Git/asdf-community/asdf-direnv
+repo = /Users/kucho/Git/asdf-vm/asdf
+repo = /Users/kucho/Git/marlonrichert/zsh-autocomplete
+repo = /Users/kucho/Git/zsh-users/zsh-autosuggestions
+repo = /Users/kucho/Git/zsh-users/zsh-completions
+repo = /Users/kucho/Git/zsh-users/zsh-syntax-highlighting
+

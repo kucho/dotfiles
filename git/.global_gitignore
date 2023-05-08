@@ -1,0 +1,32 @@
+# Dotfiles
+.extra
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Environment files
+.env
+.envrc
+
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# IDEs
+*.iml
+.idea/
+.vscode/
+
+# Generated tags
+TAGS
+
+# znap generated files
+*.zwc
+
+# asdf files
+.tool-versions

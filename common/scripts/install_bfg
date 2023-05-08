@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+# Install Java and jq
+sudo apt -y install default-jre-headless jq
+
+# Get latest version
+latestVersion=$(curl -s https://search.maven.org/solrsearch/select?q=a:bfg | jq -r '.response.docs[0].latestVersion')
+
+# Fetch latest bfg.jar
+sudo wget https://repo1.maven.org/maven2/com/madgag/bfg/$latestVersion/bfg-$latestVersion.jar -O /usr/local/bin/bfg-latest.jar
+
+# Install to /usr/local/bin
+echo -e "#!/bin/bash\njava -jar /usr/local/bin/bfg-latest.jar \$@" | sudo tee /usr/local/bin/bfg
+
+# Make file executable
+sudo chmod +x /usr/local/bin/bfg
