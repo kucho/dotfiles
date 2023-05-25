@@ -8,3 +8,6 @@ function install_homebrew {
 
 znap eval _homebrew install_homebrew
 znap eval _install_dependencies 'cd ~ && brew bundle &>/dev/null'
+. $(brew --prefix asdf)/libexec/asdf.sh
+znap eval direnv 'direnv hook zsh'
+znap eval iterm2 'curl -fsSL https://iterm2.com/shell_integration/zsh'
