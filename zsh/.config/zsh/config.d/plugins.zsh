@@ -1,7 +1,3 @@
-# Plugins
-znap eval starship 'starship init zsh --print-full-init'
-znap prompt
-
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 znap source zsh-users/zsh-syntax-highlighting
 
