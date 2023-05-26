@@ -37,8 +37,7 @@ done
 
 # Add ohmyzsh functions and autocompletions
 znap source ohmyzsh/ohmyzsh lib/completion \
-  plugins/{git,command-not-found,kubectl,gcloud}
-fpath+=( ~[ohmyzsh]/{kubectl,gcloud} )
+  plugins/{git,command-not-found,kubectl,gcloud,asdf}
 
 znap eval zsh-completions "znap install zsh-users/zsh-completions"
 
