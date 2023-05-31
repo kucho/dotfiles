@@ -15,6 +15,8 @@ function install_homebrew {
   cd ~ && brew bundle &>/dev/nul
 }
 
+fpath+=($(brew --prefix)/share/zsh/site-functions)
+
 znap eval _homebrew install_homebrew
 
 # Add libpq to path
