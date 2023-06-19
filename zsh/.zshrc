@@ -24,6 +24,10 @@ if [ ! -f /usr/local/bin/starship ]; then
 	curl -sS https://starship.rs/install.sh | sh
 fi
 
+function command_exists() {
+	type "$1" &>/dev/null
+}
+
 # Load config files
 for conf in "$HOME/.config/zsh/config.d/"*.zsh; do
 	source "${conf}"
