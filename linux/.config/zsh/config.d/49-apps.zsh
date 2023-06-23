@@ -1,5 +1,9 @@
 znap source asdf-vm/asdf asdf.sh
-znap eval _install_direnv "asdf plugin-add direnv && asdf install direnv latest && asdf global direnv latest &>/dev/null"
+
+if ! command_exists direnv; then
+  asdf plugin-add direnv && asdf install direnv latest && asdf global direnv latest &>/dev/null;
+fi
+
 znap eval asdf-community/asdf-direnv "asdf exec $(asdf which direnv) hook zsh"
 
 fpath+=( ~[asdf-community/asdf-direnv]/completions )
