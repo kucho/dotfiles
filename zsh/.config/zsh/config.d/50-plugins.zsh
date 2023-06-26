@@ -39,7 +39,3 @@ znap source ohmyzsh/ohmyzsh lib/completion \
   plugins/{git,command-not-found,kubectl,gcloud,asdf}
 
 znap eval zsh-completions "znap install zsh-users/zsh-completions"
-
-# `znap eval <name> '<command>'` is like `eval "$( <command> )"` but with
-# caching and compilation of <command>'s output, making it ~10 times faster.
-znap eval zcolors zcolors # Extra init code needed for zcolors.
