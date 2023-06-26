@@ -19,8 +19,8 @@ fpath+=($(brew --prefix)/share/zsh/site-functions)
 
 znap eval _homebrew install_homebrew
 
-# Add libpq to path
-path+=($(brew --prefix libpq)/bin)
+# Add libpq and dotnet tools to path
+path+=($(brew --prefix libpq)/bin ~/.dotnet/tools)
 
 # Enable asdf
 . $(brew --prefix asdf)/libexec/asdf.sh

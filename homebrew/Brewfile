@@ -1,5 +1,4 @@
 # 'brew/tap'
-tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 
 # 'brew/install'
