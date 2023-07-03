@@ -19,9 +19,9 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Download starship, if it's not there yet.
-if [ ! -f /usr/local/bin/starship ]; then
-	curl -sS https://starship.rs/install.sh | sh
+# Download Oh My Posh, if it's not there yet.
+if [ ! -f /usr/local/bin/oh-my-posh ]; then
+	curl -s https://ohmyposh.dev/install.sh | sudo bash -s
 fi
 
 function command_exists() {
