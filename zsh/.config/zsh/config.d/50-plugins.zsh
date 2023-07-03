@@ -7,10 +7,10 @@
 # -a sets the variable's type to array.
 local -a plugins=(
   marlonrichert/zsh-autocomplete    # Real-time type-ahead completion
-  marlonrichert/zsh-edit            # Better keyboard shortcuts
-  marlonrichert/zsh-hist            # Edit history from the command line
   zsh-users/zsh-autosuggestions     # Inline suggestions
   zsh-users/zsh-syntax-highlighting # Command-line syntax highlighting
+  marlonrichert/zsh-edit            # Better keyboard shortcuts
+  marlonrichert/zsh-hist            # Edit history from the command line
   MichaelAquilina/zsh-you-should-use
 )
 

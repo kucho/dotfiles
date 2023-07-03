@@ -1,7 +1,7 @@
 znap source asdf-vm/asdf asdf.sh
 
 if ! command_exists direnv; then
-  asdf plugin-add direnv && asdf install direnv latest && asdf global direnv latest &>/dev/null;
+  asdf plugin-add direnv && asdf install direnv latest && asdf global direnv latest &>/dev/null
 fi
 
 if ! command_exists socat; then
