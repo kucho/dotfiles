@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 znap source asdf-vm/asdf asdf.sh
 
 if ! command_exists direnv; then
@@ -12,4 +14,4 @@ znap eval asdf-community/asdf-direnv "asdf exec $(asdf which direnv) hook zsh"
 
 fpath+=( ~[asdf-community/asdf-direnv]/completions )
 
-source $HOME/.local/bin/agent-bridge.sh
+source $HOME/.agent-bridge.sh

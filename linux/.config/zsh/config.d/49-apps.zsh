@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 znap source asdf-vm/asdf asdf.sh
 
 if ! command_exists direnv; then
