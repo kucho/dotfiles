@@ -6,6 +6,8 @@ signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8svbpnhW1fbLEKhF/9ckmLS0yE1s4
 format = ssh
 [core]
 excludesfile = ~/.global_gitignore
+fsmonitor = true
+untrackedcache = true
 [commit]
 gpgsign = true
 [pull]
@@ -36,4 +38,3 @@ repo = /Users/kucho/Git/marlonrichert/zsh-autocomplete
 repo = /Users/kucho/Git/zsh-users/zsh-autosuggestions
 repo = /Users/kucho/Git/zsh-users/zsh-completions
 repo = /Users/kucho/Git/zsh-users/zsh-syntax-highlighting
-
