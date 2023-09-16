@@ -20,6 +20,8 @@ local -a plugins=(
 # autocompletion kicks in:
 zstyle ':autocomplete:*' min-delay 0.5 # seconds
 
+zstyle ':znap:*' git-maintenance off
+
 # If your connection is VERY slow, then you might want to disable
 # autocompletion completely and use only tab completion instead:
 #   zstyle ':autocomplete:*' async no
