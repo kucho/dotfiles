@@ -13,5 +13,3 @@ fi
 znap eval asdf-community/asdf-direnv "asdf exec $(asdf which direnv) hook zsh"
 
 fpath+=( ~[asdf-community/asdf-direnv]/completions )
-
-source $HOME/.agent-bridge.sh
