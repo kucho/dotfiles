@@ -6,7 +6,6 @@
 .Trashes
 
 # Environment files
-.env
 .envrc
 
 # Folder view configuration files
