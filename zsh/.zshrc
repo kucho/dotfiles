@@ -23,11 +23,6 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Download Oh My Posh, if it's not there yet.
-if ! command_exists oh-my-posh; then
-	curl -s https://ohmyposh.dev/install.sh | sudo bash -s
-fi
-
 # Load config files
 for conf in "$HOME/.config/zsh/config.d/"*.zsh; do
 	source "${conf}"
