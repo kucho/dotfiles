@@ -11,7 +11,6 @@ local -a plugins=(
   zsh-users/zsh-syntax-highlighting # Command-line syntax highlighting
   marlonrichert/zsh-edit            # Better keyboard shortcuts
   marlonrichert/zsh-hist            # Edit history from the command line
-  MichaelAquilina/zsh-you-should-use
 )
 
 # The Zsh Autocomplete plugin sends *a lot* of characters to your terminal.
