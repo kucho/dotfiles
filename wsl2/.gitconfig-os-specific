@@ -1,2 +1,2 @@
-[core]
-  sshProgram = "ssh.exe"
+[gpg "ssh"]
+  program = "op-ssh-sign.exe"
