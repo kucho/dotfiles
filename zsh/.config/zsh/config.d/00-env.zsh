@@ -4,6 +4,9 @@
 # Environment variables
 #
 
+export ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+mkdir -p $ZSH_CACHE_DIR/{history,fc-cache,completions}
+
 # -U ensures each entry in these is unique (that is, discards duplicates).
 export -U PATH path FPATH fpath MANPATH manpath
 export -UT INFOPATH infopath # -T creates a "tied" pair; see below.
@@ -16,6 +19,9 @@ export RUBY_YJIT_ENABLE=1
 # Modifying one will also modify the other.
 # Note that each value in an array is expanded separately. Thus, we can use ~
 # for $HOME in each $path entry.
+
+mkdir -p ~/.local/bin
+
 path=(
   $path
   ~/.local/bin
