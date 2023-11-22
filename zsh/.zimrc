@@ -7,7 +7,7 @@ zmodule fzf
 zmodule prompt-pwd
 zmodule duration-info
 zmodule git-info
-zmodule gitster
+zmodule eriner
 zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
 zmodule ohmyzsh/ohmyzsh --root plugins/git
