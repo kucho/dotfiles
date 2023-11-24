@@ -17,3 +17,8 @@ path+=($(brew --prefix libpq)/bin)
 
 # Use 1Password auth sock
 export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+if (( ! ${+commands[rtx]} )); then
+  curl https://rtx.pub/rtx-latest-macos-arm64 > ~/.local/bin/rtx
+  chmod +x ~/.local/bin/rtx
+fi
