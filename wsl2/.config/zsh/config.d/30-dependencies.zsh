@@ -5,4 +5,5 @@ if (( ! ${+commands[rtx]} )); then
   chmod +x ~/.local/bin/rtx
 fi
 
-source $HOME/.agent-bridge.sh
+alias ssh='ssh.exe'
+alias ssh-add='ssh-add.exe'
