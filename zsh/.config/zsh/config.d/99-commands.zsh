@@ -43,6 +43,10 @@ READNULLCMD=$PAGER # Set the program to use for this.
 alias lg='lazygit'
 alias dev='bin/dev'
 
+if (( ! ${+commands[eza]} )); then
+  alias exa='eza' 
+fi
+
 # Get my ip
 function myip {
   dig +short txt ch whoami.cloudflare @1.0.0.1 | tr -d '"'
