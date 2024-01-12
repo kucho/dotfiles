@@ -14,9 +14,9 @@ fi
 
 source ${ZIM_HOME}/init.zsh
 
-if (( ${+commands[rtx]} )); then
-  eval "$(rtx activate zsh)"
-  eval "$(rtx hook-env)"
+if (( ${+commands[mise]} )); then
+  eval "$(mise activate zsh)"
+  eval "$(mise hook-env)"
 fi
 
 if (( ${+commands[direnv]} )); then

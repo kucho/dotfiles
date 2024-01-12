@@ -21,7 +21,6 @@ fpath+=($(brew --prefix)/share/zsh/site-functions)
 # Add libpq to path
 path+=($(brew --prefix libpq)/bin)
 
-if (( ! ${+commands[rtx]} )); then
-  curl https://rtx.pub/rtx-latest-macos-arm64 > ~/.local/bin/rtx
-  chmod +x ~/.local/bin/rtx
+if (( ! ${+commands[mise]} )); then
+  curl https://mise.jdx.dev/install.sh | sh
 fi
