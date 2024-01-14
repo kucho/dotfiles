@@ -26,6 +26,3 @@ TAGS
 
 # znap generated files
 *.zwc
-
-# asdf files
-.tool-versions
