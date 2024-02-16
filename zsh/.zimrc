@@ -1,18 +1,18 @@
+zmodule environment
 zmodule utility
 zmodule archive
 zmodule input
 zmodule magic-enter
-zmodule exa
 zmodule fzf
 zmodule prompt-pwd
 zmodule duration-info
 zmodule git-info
-zmodule eriner
+zmodule asciiship
 zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
 zmodule ohmyzsh/ohmyzsh --root plugins/git
 zmodule ohmyzsh/ohmyzsh --root plugins/command-not-found
 zmodule ohmyzsh/ohmyzsh --root plugins/gcloud
-zmodule ohmyzsh/ohmyzsh --root plugins/rtx
+zmodule ohmyzsh/ohmyzsh --root plugins/mise
 zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-autosuggestions

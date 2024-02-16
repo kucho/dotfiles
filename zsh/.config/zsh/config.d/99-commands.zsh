@@ -43,8 +43,9 @@ READNULLCMD=$PAGER # Set the program to use for this.
 alias lg='lazygit'
 alias dev='bin/dev'
 
-if (( ! ${+commands[eza]} )); then
-  alias exa='eza' 
+if (( ${+commands[eza]} )); then
+  alias exa='eza'
+  alias ls='eza'
 fi
 
 # Get my ip
