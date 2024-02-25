@@ -8,11 +8,5 @@ zmodule prompt-pwd
 zmodule duration-info
 zmodule git-info
 zmodule asciiship
-zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
-zmodule ohmyzsh/ohmyzsh --root plugins/git
-zmodule ohmyzsh/ohmyzsh --root plugins/command-not-found
-zmodule ohmyzsh/ohmyzsh --root plugins/gcloud
-zmodule ohmyzsh/ohmyzsh --root plugins/mise
 zmodule zsh-users/zsh-syntax-highlighting
-zmodule zsh-users/zsh-autosuggestions
