@@ -8,5 +8,4 @@ zmodule prompt-pwd
 zmodule duration-info
 zmodule git-info
 zmodule asciiship
-zmodule completion
 zmodule zsh-users/zsh-syntax-highlighting
