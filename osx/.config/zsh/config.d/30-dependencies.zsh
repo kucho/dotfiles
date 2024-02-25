@@ -16,10 +16,10 @@ if (( ! ${+commands[brew]} )); then
   cd ~ && brew bundle &>/dev/nul
 fi
 
-fpath+=($(brew --prefix)/share/zsh/site-functions)
+fpath=(/opt/homebrew/share/zsh/site-functions(N) ${fpath})
 
 # Add libpq to path
-path+=($(brew --prefix libpq)/bin)
+path+=(/opt/homebrew/libpq/bin)
 
 if (( ! ${+commands[mise]} )); then
   curl https://mise.jdx.dev/install.sh | sh
