@@ -19,7 +19,7 @@ fi
 fpath=(/opt/homebrew/share/zsh/site-functions(N) ${fpath})
 
 # Add libpq to path
-path+=(/opt/homebrew/libpq/bin)
+path+=(/opt/homebrew/opt/libpq/bin)
 
 if (( ! ${+commands[mise]} )); then
   curl https://mise.jdx.dev/install.sh | sh
