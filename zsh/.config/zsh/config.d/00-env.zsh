@@ -5,7 +5,10 @@
 #
 
 # Issue https://github.com/zimfw/zimfw/issues/504
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 export ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 mkdir -p $ZSH_CACHE_DIR/{history,fc-cache,completions}
