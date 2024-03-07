@@ -36,3 +36,8 @@ if [ ! -f ~/Git/fzf/install ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if (( ! ${+commands[mise]} )); then
+  curl https://mise.jdx.dev/install.sh | sh
+fi
+
