@@ -13,6 +13,9 @@ export LC_CTYPE=en_US.UTF-8
 export ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 mkdir -p $ZSH_CACHE_DIR/{history,fc-cache,completions}
 
+# Highlight matches in autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=137'
+
 # -U ensures each entry in these is unique (that is, discards duplicates).
 export -U PATH path FPATH fpath MANPATH manpath
 export -UT INFOPATH infopath # -T creates a "tied" pair; see below.
