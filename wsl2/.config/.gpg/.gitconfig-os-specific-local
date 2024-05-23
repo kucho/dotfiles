@@ -1,0 +1,2 @@
+[gpg "ssh"]
+  program = "/mnt/c/Users/MyUser/AppData/Local/1Password/app/8/op-ssh-sign-wsl"

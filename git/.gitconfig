@@ -9,6 +9,7 @@
 [gpg]
 	format = ssh
 [include]
+	path = ~/.git_config/.personal/.gitconfig-local
 	path = ~/.gitconfig-os-specific
 [init]
 	defaultBranch = main
@@ -21,7 +22,3 @@
 [rerere]
 	autoUpdate = true
 	enabled = true
-[user]
-	email = victor.rodriguez.guriz@gmail.com
-	name = Victor Rodriguez
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8svbpnhW1fbLEKhF/9ckmLS0yE1s4GdWt+SlsYb1pe
