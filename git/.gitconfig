@@ -18,6 +18,9 @@
 	autoSetupRemote = true
 [rebase]
 	autoStash = true
+[rerere]
+	autoUpdate = true
+	enabled = true
 [user]
 	email = victor.rodriguez.guriz@gmail.com
 	name = Victor Rodriguez
