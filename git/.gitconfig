@@ -1,24 +1,24 @@
-[user]
-	name = Victor Rodriguez
-	email = victor.rodriguez.guriz@gmail.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8svbpnhW1fbLEKhF/9ckmLS0yE1s4GdWt+SlsYb1pe
-[gpg]
-	format = ssh
+[commit]
+	gpgsign = true
 [core]
 	excludesfile = ~/.global_gitignore
 	fsmonitor = true
 	untrackedcache = true
-[commit]
-	gpgsign = true
 [fetch]
 	prune = true
-[pull]
-	rebase = true
-[rebase]
-	autoStash = true
-[init]
-	defaultBranch = main
+[gpg]
+	format = ssh
 [include]
 	path = ~/.gitconfig-os-specific
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
 [push]
 	autoSetupRemote = true
+[rebase]
+	autoStash = true
+[user]
+	email = victor.rodriguez.guriz@gmail.com
+	name = Victor Rodriguez
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8svbpnhW1fbLEKhF/9ckmLS0yE1s4GdWt+SlsYb1pe
