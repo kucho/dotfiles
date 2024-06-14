@@ -9,7 +9,7 @@
 [gpg]
 	format = ssh
 [include]
-	path = ~/.git_config/.personal/.gitconfig-local
+	path = ~/.local_git/.git_personal_config
 	path = ~/.gitconfig-os-specific
 [init]
 	defaultBranch = main

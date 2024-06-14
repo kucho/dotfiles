@@ -1,5 +1,5 @@
 [core]
   sshCommand = ssh.exe
 [include]
-  path = "~/.config/.gpg/.gitconfig-os-specific-local"
+  path = "~/.local_git/.wsl2_os_specific"
   
