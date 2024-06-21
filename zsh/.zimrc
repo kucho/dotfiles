@@ -11,5 +11,6 @@ zmodule eriner
 zmodule exa
 zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
+zmodule kucho/zim-zoxide
 zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-autosuggestions
