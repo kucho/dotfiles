@@ -3,7 +3,6 @@ zmodule utility
 zmodule archive
 zmodule input
 zmodule magic-enter
-zmodule fzf
 zmodule prompt-pwd
 zmodule duration-info
 zmodule git-info
