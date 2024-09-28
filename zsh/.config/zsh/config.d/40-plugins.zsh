@@ -24,15 +24,6 @@ if (( ! ${+commands[mise]} )); then
   curl https://mise.jdx.dev/install.sh | sh
 fi
 
-if (( ${+commands[mise]} )); then
-  eval "$(mise activate zsh)"
-  eval "$(mise hook-env)"
-fi
-
-if (( ${+commands[direnv]} )); then
-  eval "$(direnv hook zsh)"
-fi
-
 if [ ! -f ~/Git/fzf/install ]; then
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/Git/fzf
 	printf 'y\ny\ny\n' | ~/Git/fzf/install
