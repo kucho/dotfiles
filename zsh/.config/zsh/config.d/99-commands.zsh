@@ -38,6 +38,7 @@ READNULLCMD=$PAGER # Set the program to use for this.
 alias lg='lazygit'
 alias dev='bin/dev'
 alias until_failure='~/scripts/until_failure'
+alias ls='eza --group-directories-first --icons'
 
 # Get my ip
 function myip {
