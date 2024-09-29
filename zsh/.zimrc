@@ -1,15 +1,13 @@
 zmodule environment
-zmodule utility
-zmodule archive
 zmodule input
-zmodule magic-enter
 zmodule prompt-pwd
 zmodule duration-info
 zmodule git-info
-zmodule eriner
+zmodule gitster
 zmodule joke/zim-mise
 zmodule direnv
 zmodule exa
+zmodule fzf
 zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
 zmodule kucho/zim-zoxide
