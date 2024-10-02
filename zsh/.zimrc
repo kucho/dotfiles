@@ -3,7 +3,7 @@ zmodule input
 zmodule prompt-pwd
 zmodule duration-info
 zmodule git-info
-zmodule gitster
+zmodule eriner
 zmodule joke/zim-mise
 zmodule direnv
 zmodule exa
