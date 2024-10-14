@@ -19,4 +19,4 @@ fi
 fpath=(/opt/homebrew/share/zsh/site-functions(N) ${fpath})
 
 # Add libpq to path
-path+=(/opt/homebrew/opt/libpq/bin)
+path+=(/opt/homebrew/opt/postgresql@16/bin)
