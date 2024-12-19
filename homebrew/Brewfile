@@ -3,7 +3,6 @@ tap "homebrew/cask-fonts"
 
 # 'brew/install'
 brew "libpq"
-brew "direnv"
 
 # 'brew install --cask'
 cask "fork"

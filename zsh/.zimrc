@@ -5,7 +5,6 @@ zmodule duration-info
 zmodule git-info
 zmodule eriner
 zmodule joke/zim-mise
-zmodule direnv
 zmodule exa
 zmodule fzf
 zmodule zsh-users/zsh-completions --fpath src
