@@ -6,3 +6,5 @@ $env.config = {
     show_banner: false
     use_kitty_protocol: true
 }
+
+$env.PROMPT_COMMAND_RIGHT = {||}
