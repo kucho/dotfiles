@@ -9,6 +9,8 @@ path add -a "~/.local/bin"
 path add -a ($env.BUN_INSTALL | path join bin)
 path add -a "/opt/homebrew/opt/libpq/bin"
 
+$env.LS_COLORS = (vivid generate modus-operandi)
+
 let mise_path = $nu.default-config-dir | path join mise.nu
 ^mise activate nu | save $mise_path --force
 

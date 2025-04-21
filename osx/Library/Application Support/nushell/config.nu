@@ -51,9 +51,13 @@ $env.config = {
     show_banner: false
     use_kitty_protocol: true
     completions: {
-      external: {
-        completer: $external_completer
-      }
+        external: {
+            completer: $external_completer
+        }
+    },
+    color_config: {
+        separator: dark_gray
+        string: black
     }
 }
 
