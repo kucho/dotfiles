@@ -14,7 +14,7 @@ let carapace_completer = {|spans: list<string>|
 }
 
 let zoxide_completer = {|spans|
-  $spans | skip 1 | zoxide query -l $in | lines | where {|x| $x != $env.PWD }
+  $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD }
 }
 
 let external_completer = {|spans|
@@ -45,6 +45,7 @@ let external_completer = {|spans|
 
 $env.config.completions = {
   external: {
+    enable: true
     completer: $external_completer
   }
 }
