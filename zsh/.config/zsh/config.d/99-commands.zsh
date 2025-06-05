@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 ##
-# Commands, funtions and aliases
+# Commands, functions and aliases
 #
 # Always set aliases _last,_ so they don't get used in function definitions.
 #
@@ -15,6 +15,12 @@
 #   ~-2 to go to the 2nd mostly recently visited dir
 #   /   to go to the root dir
 setopt AUTO_CD
+
+# No special treatment for file names with a leading dot
+setopt GLOB_DOTS
+
+# Require an extra TAB press to open the completion menu
+setopt NO_AUTO_MENU
 
 # These aliases enable us to paste example code into the terminal without the
 # shell complaining about the pasted prompt symbol.
@@ -38,7 +44,9 @@ READNULLCMD=$PAGER # Set the program to use for this.
 alias lg='lazygit'
 alias dev='bin/dev'
 alias until_failure='~/scripts/until_failure'
-alias ls='eza --group-directories-first --icons'
+
+alias tree='tree -a -I .git'
+alias ls='eza --group-directories-first --icons -A'
 
 # Get my ip
 function myip {
