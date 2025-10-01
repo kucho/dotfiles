@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 z4h bindkey undo Ctrl+/    Shift+Tab    # undo the last command line change
 z4h bindkey redo Option+/               # redo the last undone command line change
 

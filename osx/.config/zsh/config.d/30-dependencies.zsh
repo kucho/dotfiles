@@ -11,3 +11,6 @@ fpath=(/opt/homebrew/share/zsh/site-functions(N) ${fpath})
 
 # Add libpq to path
 path+=(/opt/homebrew/opt/libpq/bin)
+
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_ENV_HINTS=1
