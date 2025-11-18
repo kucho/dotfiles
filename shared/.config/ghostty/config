@@ -1,0 +1,7 @@
+font-size = 14
+font-family = Berkeley Mono
+theme=light:Alabaster,dark:GitLab Dark Grey
+window-height = 40
+window-padding-balance = true
+window-padding-color=extend
+window-width = 120
