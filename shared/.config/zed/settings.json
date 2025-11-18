@@ -12,7 +12,6 @@
 		"dockerfile": true,
 		"dune-theme": true,
 		"emmet": true,
-		"fish": true,
 		"flexoki-themes": true,
 		"git-firefly": true,
 		"html": true,
@@ -93,15 +92,9 @@
 			"language_servers": [
 				"vscode-html-languageservice",
 				"tailwindcss-language-server",
-				"biome"
+				"biome",
+				"codebook"
 			]
-		},
-		"Fish": {
-			"formatter": {
-				"external": {
-					"command": "fish_indent"
-				}
-			}
 		},
 		"HTML+ERB": {
 			"formatter": {
@@ -135,19 +128,13 @@
 				}
 			}
 		},
-		"Nu": {
-			"formatter": {
-				"external": {
-					"command": "~/.config/topiary/format.nu"
-				}
-			}
-		},
 		"Ruby": {
 			"language_servers": [
 				"ruby-lsp",
 				"!rubocop",
 				"!solargraph",
-				"tailwindcss-language-server"
+				"tailwindcss-language-server",
+				"codebook"
 			]
 		},
 		"SQL": {
@@ -203,7 +190,7 @@
 					"format": {
 						"enable": true
 					},
-					"keyOrdering": true
+					"keyOrdering": false
 				}
 			}
 		}
