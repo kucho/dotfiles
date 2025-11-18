@@ -1,2 +1,6 @@
 git:
+  pagers:
+    - externalDiffCommand: difft --color=always --display=inline --syntax-highlight=off
+      colorArg: always
+    - pager: delta --paging=never --true-color=always --diff-so-fancy --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
   overrideGpg: true
