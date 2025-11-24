@@ -10,7 +10,7 @@ zstyle ':z4h:fzf-complete'       recurse-dirs              yes
 zstyle ':z4h:direnv'             enable                    no
 zstyle ':z4h:direnv:success'     notify                    no
 zstyle ':z4h:ssh:*'              enable                    yes
-zstyle ':z4h:ssh:*'              send-extra-files          '~/.config/zsh/config.d'
+# zstyle ':z4h:ssh:*'              send-extra-files          '~/.config/zsh/config.d'
 
 z4h init || return
 
