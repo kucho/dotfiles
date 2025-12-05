@@ -8,12 +8,14 @@
 		"catppuccin-icons": true,
 		"chaos-theory-theme": true,
 		"codebook": true,
+		"comment": true,
 		"csv": true,
 		"dockerfile": true,
 		"dune-theme": true,
 		"emmet": true,
 		"flexoki-themes": true,
 		"git-firefly": true,
+		"github-plus-theme": true,
 		"html": true,
 		"jetbrains-themes": true,
 		"modus-themes": true,
@@ -40,6 +42,7 @@
 	"collaboration_panel": {
 		"dock": "right"
 	},
+	"colorize_brackets": true,
 	"diagnostics": {
 		"inline": {
 			"enabled": true
@@ -67,6 +70,9 @@
 		"Git Attributes": ["{git,.git,.git/info}/attributes"],
 		"Git Config": ["{git,.git/modules,.git/modules/*}/config"],
 		"Git Ignore": ["{git,.git}/ignore", ".git/info/exclude"]
+	},
+	"git_panel": {
+		"collapse_untracked_diff": true
 	},
 	"icon_theme": "Catppuccin Latte",
 	"journal": {
@@ -212,7 +218,7 @@
 	},
 	"theme": {
 		"dark": "JetBrains Dark",
-		"light": "Github Plus Light",
+		"light": "Zoegi Light",
 		"mode": "system"
 	},
 	"ui_font_family": "SF Pro Text",
