@@ -71,9 +71,6 @@
 		"Git Config": ["{git,.git/modules,.git/modules/*}/config"],
 		"Git Ignore": ["{git,.git}/ignore", ".git/info/exclude"]
 	},
-	"git_panel": {
-		"collapse_untracked_diff": true
-	},
 	"icon_theme": "Catppuccin Latte",
 	"journal": {
 		"hour_format": "hour24",
@@ -84,20 +81,6 @@
 			"formatter": {
 				"language_server": {
 					"name": "biome"
-				}
-			},
-			"language_servers": [
-				"vscode-html-languageservice",
-				"tailwindcss-language-server",
-				"biome",
-				"codebook"
-			]
-		},
-		"HTML+ERB": {
-			"formatter": {
-				"external": {
-					"arguments": ["--stdin", "--print-width", "120"],
-					"command": "erb-formatter"
 				}
 			}
 		},
@@ -130,8 +113,11 @@
 				"ruby-lsp",
 				"!rubocop",
 				"!solargraph",
+				"!sorbet",
+				"!steep",
 				"tailwindcss-language-server",
-				"codebook"
+				"codebook",
+				"..."
 			]
 		},
 		"SQL": {
@@ -190,6 +176,15 @@
 					"keyOrdering": false
 				}
 			}
+		},
+		"vscode-css-language-server": {
+			"settings": {
+				"css": {
+					"lint": {
+						"unknownAtRules": "ignore"
+					}
+				}
+			}
 		}
 	},
 	"project_panel": {
@@ -217,7 +212,7 @@
 		"line_height": "standard"
 	},
 	"theme": {
-		"dark": "JetBrains Dark",
+		"dark": "Zoegi Dark",
 		"light": "Zoegi Light",
 		"mode": "system"
 	},
