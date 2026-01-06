@@ -1,0 +1,13 @@
+[
+  {
+    "bindings": {
+      "ctrl-shift-t": [
+        "task::Spawn",
+        {
+          "task_name": "Toggle Test and Target",
+          "reevaluate_context": true
+        }
+      ]
+    }
+  }
+]

@@ -1,8 +1,10 @@
 alpha-blending = linear-corrected
 auto-update = download
+auto-update-channel = tip
 clipboard-paste-protection = false
 confirm-close-surface = false
 cursor-style = block
+cursor-style-blink = false
 font-family = Berkeley Mono
 font-size = 20
 macos-titlebar-style = tabs

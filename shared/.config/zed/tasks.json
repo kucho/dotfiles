@@ -1,0 +1,17 @@
+[
+	{
+		"label": "Toggle Test and Target",
+		"command": "go-zed-test-toggle",
+		"args": [
+			"lookup",
+			"-p",
+			"\"$ZED_RELATIVE_FILE\"",
+			"-r",
+			"\"$ZED_WORKTREE_ROOT\""
+		],
+		"hide": "always",
+		"allow_concurrent_runs": false,
+		"use_new_terminal": false,
+		"reveal": "never"
+	}
+]
