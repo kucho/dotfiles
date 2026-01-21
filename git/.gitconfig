@@ -1,7 +1,7 @@
-[column]
-  ui = auto
 [branch]
   sort = -committerdate
+[column]
+  ui = auto
 [commit]
   gpgsign = true
   verbose = true
@@ -31,8 +31,8 @@
 [pull]
   rebase = true
 [push]
-  default = simple
   autoSetupRemote = true
+  default = simple
   followTags = true
 [rebase]
   autoSquash = true
@@ -41,6 +41,8 @@
 [rerere]
   autoUpdate = true
   enabled = true
+[url "git@github.com:"]
+  insteadOf = https://github.com/
 [user]
   email = kuchox@pm.me
   name = Victor Rodriguez
