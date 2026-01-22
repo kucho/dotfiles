@@ -214,7 +214,7 @@
 	},
 	"theme": {
 		"dark": "Zoegi Dark",
-		"light": "Modus Operandi",
+		"light": "Zoegi Light",
 		"mode": "system"
 	},
 	"ui_font_family": ".SystemUIFont",

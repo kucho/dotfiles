@@ -1,13 +1,25 @@
 [
-  {
-    "bindings": {
-      "ctrl-shift-t": [
-        "task::Spawn",
-        {
-          "task_name": "Toggle Test and Target",
-          "reevaluate_context": true
-        }
-      ]
-    }
-  }
+	{
+		"bindings": {
+			"ctrl-shift-t": [
+				"task::Spawn",
+				{
+					"task_name": "Toggle Test and Target",
+					"reevaluate_context": true
+				}
+			]
+		}
+	},
+	{
+		"context": "Editor",
+		"bindings": {
+			"ctrl-left": "editor::MoveToStartOfLargerSyntaxNode"
+		}
+	},
+	{
+		"context": "Editor",
+		"bindings": {
+			"ctrl-right": "editor::MoveToEndOfLargerSyntaxNode"
+		}
+	}
 ]
