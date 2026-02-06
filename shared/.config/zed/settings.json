@@ -49,10 +49,8 @@
 		}
 	},
 	"edit_predictions": {
+		"provider": "zed",
 		"mode": "subtle"
-	},
-	"features": {
-		"edit_prediction_provider": "zed"
 	},
 	"file_scan_exclusions": [
 		"**/.git",
