@@ -1,0 +1,11 @@
+#!/bin/sh
+# Wrapper for op-ssh-sign that ensures SSH_TTY is set in remote sessions.
+# When connecting via Zed's SSH remote, SSH_TTY may not be set even though
+# the SSH agent is forwarded. op-ssh-sign requires both SSH_AUTH_SOCK and
+# SSH_TTY to detect that it should use the forwarded agent for signing.
+
+if [ -n "$SSH_CONNECTION" ] && [ -z "$SSH_TTY" ]; then
+  export SSH_TTY=/dev/pts/0
+fi
+
+exec /opt/1Password/op-ssh-sign "$@"
