@@ -42,14 +42,21 @@ git commit -m "title" -m "body paragraph"
 - Use a short prefix for readability in `git log --oneline` (avoid "fix:" or "feature:" prefixes)
 
 **Body:**
-- Explain what the change does and why: 
-  - Why are we making this change? 
+- Explain what the change does and why:
+  - Why are we making this change?
   - What prompted it?
-  - What other solutions were tried/considered, if any? 
+  - What other solutions were tried/considered, if any?
   - And why did we pick this one over the other(s)?
-  - Where was the bug introduced? (If applicable) 
-  - Imagine you're explaining this to someone who has no context (yet)
-  - Illuminate blind alleys.
-  - What else might be a good option if this idea doesn't pan out?
+  - Where was the bug introduced? (If applicable)
 - Use proper grammar and punctuation
 - Use imperative mood throughout
+
+## Writing Guidance
+
+- Be precise and factual. Avoid implying outcomes that were not observed.
+- Separate observed behavior from risk:
+  - Observed: what you measured or saw.
+  - Risk: what the old code could cause.
+- Keep language repository-facing and neutral; describe the change, not the reviewer.
+- When available, include brief concrete evidence (counts, example output, reproducible symptom).
+- Call out intent preservation when refactoring tests or structure (what coverage/behavior remains the same).
