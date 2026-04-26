@@ -1,0 +1,18 @@
+[env]
+_.file = "~/.env.default"
+
+[settings]
+idiomatic_version_file_enable_tools = ["ruby"]
+ruby = { compile = true }
+status = { missing_tools = "always" }
+
+[tools]
+elixir = "latest"
+erlang = "latest"
+node = "latest"
+go = "latest"
+ruby = "latest"
+usage = "latest"
+bun = "latest"
+biome = "latest"
+elasticsearch = "7"
