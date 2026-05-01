@@ -1,12 +1,13 @@
 {
 	"agent": {
-		"always_allow_tool_actions": true
+		"sidebar_side": "right",
+		"dock": "right",
+		"favorite_models": [],
+		"model_parameters": []
 	},
 	"auto_install_extensions": {
-		"bamboo-theme": true,
 		"biome": true,
 		"catppuccin-icons": true,
-		"chaos-theory-theme": true,
 		"codebook": true,
 		"comment": true,
 		"csv": true,
@@ -19,7 +20,6 @@
 		"html": true,
 		"jetbrains-themes": true,
 		"modus-themes": true,
-		"ninja": true,
 		"ruby": true,
 		"sql": true,
 		"stimulus": true,
@@ -48,6 +48,7 @@
 			"enabled": true
 		}
 	},
+	"diff_view_style": "split",
 	"edit_predictions": {
 		"provider": "zed",
 		"mode": "subtle"
@@ -69,7 +70,14 @@
 		"Git Config": ["{git,.git/modules,.git/modules/*}/config"],
 		"Git Ignore": ["{git,.git}/ignore", ".git/info/exclude"]
 	},
-	"icon_theme": "Catppuccin Latte",
+	"git_panel": {
+		"dock": "left"
+	},
+	"icon_theme": {
+		"mode": "system",
+		"light": "Catppuccin Latte",
+		"dark": "Catppuccin Mocha"
+	},
 	"journal": {
 		"hour_format": "hour24",
 		"path": "~/Documents/Journal"
@@ -113,6 +121,7 @@
 				"!solargraph",
 				"!sorbet",
 				"!steep",
+				"!kanayago",
 				"tailwindcss-language-server",
 				"codebook",
 				"..."
@@ -185,6 +194,9 @@
 			}
 		}
 	},
+	"outline_panel": {
+		"dock": "left"
+	},
 	"project_panel": {
 		"auto_fold_dirs": true,
 		"dock": "right"
@@ -211,11 +223,11 @@
 		"line_height": "standard"
 	},
 	"theme": {
-		"dark": "Zoegi Dark",
-		"light": "Zoegi Light",
+		"dark": "Alabaster Dark",
+		"light": "Alabaster",
 		"mode": "system"
 	},
-	"ui_font_family": ".SystemUIFont",
+	"ui_font_family": "SF Pro Text",
 	"ui_font_size": 16,
 	"wrap_guides": [80, 100, 120]
 }
