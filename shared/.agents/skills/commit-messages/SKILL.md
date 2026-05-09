@@ -5,7 +5,7 @@ description: Write clear commit messages. Use when asked to commit changes, writ
 
 # Committing Changes
 
-Make small, atomic commits with clear messages.
+Make small, atomic commits with clear messages. 
 
 ## Workflow
 
@@ -25,11 +25,6 @@ Make small, atomic commits—each commit should address one logical change. If y
 ```bash
 # Stage entire files
 git add <files>
-
-# Or stage specific hunks for finer control
-git hunks list                            # List all hunks with IDs
-git hunks add 'file:@-old,len+new,len'    # Stage specific hunks by ID
-
 git commit -m "title" -m "body paragraph"
 ```
 
