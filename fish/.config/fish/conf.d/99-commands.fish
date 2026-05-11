@@ -7,7 +7,5 @@ set -gx PAGER less
 alias lg lazygit
 alias dev bin/dev
 alias until_failure ~/scripts/until_failure
-alias tree 'tree -a -I .git'
-alias ls 'eza --group-directories-first --icons -A'
-alias pi 'mise exec node@latest -- pi'
-alias codex 'mise exec node@latest -- codex'
+alias ls 'lsd'
+alias tree 'lsd --tree -a -I .git'

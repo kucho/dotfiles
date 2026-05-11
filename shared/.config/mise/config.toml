@@ -7,13 +7,28 @@ ruby = { compile = true }
 status = { missing_tools = "always" }
 
 [tools]
+ast-grep = "latest"
+biome = "latest"
+delta = "latest"
+difftastic = "latest"
+elasticsearch = "7"
 elixir = "latest"
 erlang = "latest"
-node = "latest"
-go = "latest"
-ruby = "latest"
-usage = "latest"
-bun = "latest"
-biome = "latest"
-elasticsearch = "7"
+fzf = "latest"
 gh = "latest"
+go = "latest"
+lazydocker = "latest"
+lazygit = "latest"
+lsd = "latest"
+node = "lts"
+ruby = { version = "latest", depends = ["rust"] }
+rust = { version = "latest", components = "rust-analyzer,rust-src" }
+starship = { version = "latest", postinstall = "starship preset pure-preset -o ~/.config/starship.toml" }
+usage = "latest"
+zoxide = "latest"
+
+# Node.js
+"npm:@earendil-works/pi-coding-agent" = "latest"
+"npm:@herb-tools/language-server" = "latest"
+"npm:agent-browser" = "latest"
+"npm:codex" = "latest"
