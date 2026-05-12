@@ -1,6 +1,8 @@
 {
+	"cli_default_open_behavior": "existing_window",
 	"agent": {
 		"sidebar_side": "right",
+		"enabled": false,
 		"dock": "right",
 		"favorite_models": [],
 		"model_parameters": []
@@ -12,7 +14,6 @@
 		"comment": true,
 		"csv": true,
 		"dockerfile": true,
-		"dune-theme": true,
 		"emmet": true,
 		"flexoki-themes": true,
 		"git-firefly": true,
@@ -53,34 +54,13 @@
 		"provider": "zed",
 		"mode": "subtle"
 	},
-	"file_scan_exclusions": [
-		"**/.git",
-		"**/.svn",
-		"**/.hg",
-		"**/.jj",
-		"**/CVS",
-		"**/.DS_Store",
-		"**/Thumbs.db",
-		"**/.classpath",
-		"**/.settings",
-		"node_modules"
-	],
-	"file_types": {
-		"Git Attributes": ["{git,.git,.git/info}/attributes"],
-		"Git Config": ["{git,.git/modules,.git/modules/*}/config"],
-		"Git Ignore": ["{git,.git}/ignore", ".git/info/exclude"]
-	},
 	"git_panel": {
 		"dock": "left"
 	},
 	"icon_theme": {
-		"mode": "system",
+		"mode": "dark",
 		"light": "Catppuccin Latte",
 		"dark": "Catppuccin Mocha"
-	},
-	"journal": {
-		"hour_format": "hour24",
-		"path": "~/Documents/Journal"
 	},
 	"languages": {
 		"CSS": {
@@ -115,17 +95,7 @@
 			}
 		},
 		"Ruby": {
-			"language_servers": [
-				"ruby-lsp",
-				"!rubocop",
-				"!solargraph",
-				"!sorbet",
-				"!steep",
-				"!kanayago",
-				"tailwindcss-language-server",
-				"codebook",
-				"..."
-			]
+			"language_servers": ["ruby-lsp", "codebook"]
 		},
 		"SQL": {
 			"formatter": {
@@ -201,7 +171,6 @@
 		"auto_fold_dirs": true,
 		"dock": "right"
 	},
-	"show_signature_help_after_edits": true,
 	"sticky_scroll": {
 		"enabled": true
 	},
@@ -223,9 +192,9 @@
 		"line_height": "standard"
 	},
 	"theme": {
-		"dark": "Alabaster Dark",
-		"light": "Alabaster",
-		"mode": "system"
+		"dark": "Kokedera",
+		"light": "Noted Verdant Garden Light",
+		"mode": "dark"
 	},
 	"ui_font_family": "SF Pro Text",
 	"ui_font_size": 16,
