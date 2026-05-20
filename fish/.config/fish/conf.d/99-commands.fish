@@ -10,3 +10,4 @@ alias until_failure ~/scripts/until_failure
 alias ls 'lsd'
 alias tree 'lsd --tree -a -I .git'
 alias pi 'mise exec node@lts -- pi'
+alias codex 'mise exec node@lts -- codex'
