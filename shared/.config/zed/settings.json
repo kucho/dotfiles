@@ -11,20 +11,16 @@
 		"biome": true,
 		"catppuccin-icons": true,
 		"codebook": true,
-		"comment": true,
 		"csv": true,
 		"dockerfile": true,
 		"emmet": true,
-		"flexoki-themes": true,
+		"fish": true,
 		"git-firefly": true,
 		"github-plus-theme": true,
 		"html": true,
-		"jetbrains-themes": true,
-		"modus-themes": true,
 		"ruby": true,
 		"sql": true,
-		"toml": true,
-		"zoegi-theme": true
+		"toml": true
 	},
 	"auto_signature_help": false,
 	"autosave": "on_window_change",
@@ -54,10 +50,11 @@
 		"mode": "subtle"
 	},
 	"git_panel": {
-		"dock": "left"
+		"tree_view": true,
+  "dock": "left"
 	},
 	"icon_theme": {
-		"mode": "dark",
+		"mode": "system",
 		"light": "Catppuccin Latte",
 		"dark": "Catppuccin Mocha"
 	},
@@ -191,9 +188,9 @@
 		"line_height": "standard"
 	},
 	"theme": {
-		"dark": "Kokedera",
-		"light": "Noted Verdant Garden Light",
-		"mode": "dark"
+		"dark": "Github Plus Dark",
+		"light": "Gruvbox Light Hard",
+		"mode": "system"
 	},
 	"ui_font_family": "SF Pro Text",
 	"ui_font_size": 16,
