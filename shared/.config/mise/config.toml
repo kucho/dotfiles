@@ -1,5 +1,5 @@
 [env]
-_.file = "~/.env.default"
+FNOX_AGE_KEY_FILE = "~/.ssh/Personal SSH Key"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby"]
@@ -7,6 +7,7 @@ ruby = { compile = true }
 status = { missing_tools = "always" }
 
 [tools]
+age = "latest"
 ast-grep = "latest"
 biome = "latest"
 delta = "latest"
@@ -14,6 +15,7 @@ difftastic = "latest"
 elasticsearch = "7"
 elixir = "latest"
 erlang = "latest"
+fnox = "latest"
 fzf = "latest"
 gh = "latest"
 go = "latest"

@@ -10,6 +10,8 @@ else
     mise activate fish --shims | source
 end
 
+fnox activate fish | source
+
 if not type -q fisher
   curl -sL https://git.io/fisher | source
 end

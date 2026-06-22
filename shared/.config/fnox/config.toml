@@ -1,0 +1,17 @@
+default_provider = "onepass"
+
+[daemon]
+enabled = true
+idle_timeout = "8h"
+
+[providers.onepass]
+type = "1password"
+vault = "Development"
+account = "my.1password.com"
+
+[providers.age]
+type = "age"
+recipients = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8svbpnhW1fbLEKhF/9ckmLS0yE1s4GdWt+SlsYb1pe"]
+
+[secrets]
+APPSIGNAL_MCP_TOKEN = { provider = "onepass", value = "AppSignal MCP server/credential" }
