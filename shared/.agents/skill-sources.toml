@@ -1,0 +1,25 @@
+# Vendored agent skills managed by agent-skills.
+
+[[skills]]
+name = "web-browser"
+source = "https://github.com/mitsuhiko/agent-stuff/blob/main/skills/web-browser"
+repo = "https://github.com/mitsuhiko/agent-stuff.git"
+path = "skills/web-browser"
+ref = "main"
+
+
+[[skills]]
+name = "agent-browser"
+source = "https://github.com/vercel-labs/agent-browser/tree/main/skills/agent-browser"
+repo = "https://github.com/vercel-labs/agent-browser.git"
+path = "skills/agent-browser"
+ref = "main"
+
+
+[[skills]]
+name = "github"
+source = "https://github.com/mitsuhiko/agent-stuff/tree/main/skills/github"
+repo = "https://github.com/mitsuhiko/agent-stuff.git"
+path = "skills/github"
+ref = "main"
+

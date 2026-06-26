@@ -1,0 +1,25 @@
+# Resolved commits used by agent-skills install.
+
+[[skills]]
+name = "web-browser"
+repo = "https://github.com/mitsuhiko/agent-stuff.git"
+path = "skills/web-browser"
+ref = "main"
+resolved = "f1c881db21a9ec53977ff8379b74e64e290fef93"
+
+
+[[skills]]
+name = "agent-browser"
+repo = "https://github.com/vercel-labs/agent-browser.git"
+path = "skills/agent-browser"
+ref = "main"
+resolved = "5acf7f9dc153cd51dcc6c79e1aebb09c83b2261d"
+
+
+[[skills]]
+name = "github"
+repo = "https://github.com/mitsuhiko/agent-stuff.git"
+path = "skills/github"
+ref = "main"
+resolved = "f1c881db21a9ec53977ff8379b74e64e290fef93"
+

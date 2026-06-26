@@ -22,3 +22,17 @@
   ```bash
   stow -R zsh # the folder that contains the new config file
   ```
+
+## Vendored agent skills
+
+First-party skills live in `shared/.agents/skills` and are tracked normally. External skills are declared in `shared/.agents/skill-sources.toml`, pinned in `shared/.agents/skill-sources.lock.toml`, and downloaded into ignored directories under `shared/.agents/skills`.
+
+```bash
+agent-skills add https://github.com/owner/repo/blob/main/skills/name
+agent-skills install
+agent-skills update name
+agent-skills update --all
+agent-skills list
+```
+
+`install` uses the lock file's resolved commit hashes. `update` is the command that refreshes those hashes from the manifest refs.

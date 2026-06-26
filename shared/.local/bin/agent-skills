@@ -1,0 +1,430 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "fileutils"
+require "open3"
+require "optparse"
+require "tmpdir"
+require "uri"
+
+MARKER = ".agent-skills-source"
+MANIFEST_REL = "shared/.agents/skill-sources.toml"
+LOCK_REL = "shared/.agents/skill-sources.lock.toml"
+SKILLS_REL = "shared/.agents/skills"
+IGNORE_HEADER = "# agent-skills managed vendored skills"
+
+Skill = Struct.new(:name, :source, :repo, :path, :ref, keyword_init: true)
+LockedSkill = Struct.new(:name, :repo, :path, :ref, :resolved, keyword_init: true)
+
+class AgentSkillsError < StandardError; end
+
+def main(argv)
+  command = argv.shift
+
+  case command
+  when "add"
+    options = {}
+    parser = OptionParser.new do |opts|
+      opts.banner = "Usage: agent-skills add [--name NAME] [--ref REF] GITHUB_URL"
+      opts.on("--name NAME", "Override the installed skill name") { |value| options[:name] = value }
+      opts.on("--ref REF", "Override the Git ref from the URL") { |value| options[:ref] = value }
+    end
+    parser.parse!(argv)
+    url = argv.fetch(0) { raise AgentSkillsError, parser.banner }
+    add(find_repo_root, url, options)
+  when "install"
+    ensure_no_args!(argv, "Usage: agent-skills install")
+    install(find_repo_root)
+  when "update"
+    options = { all: false }
+    parser = OptionParser.new do |opts|
+      opts.banner = "Usage: agent-skills update (--all | SKILL_NAME)"
+      opts.on("--all", "Update all tracked skills") { options[:all] = true }
+    end
+    parser.parse!(argv)
+    selected_name = argv.first
+    raise AgentSkillsError, "use either 'update <skill>' or 'update --all', not both" if selected_name && options[:all]
+    raise AgentSkillsError, parser.banner unless selected_name || options[:all]
+    update(find_repo_root, selected_name)
+  when "list"
+    ensure_no_args!(argv, "Usage: agent-skills list")
+    list_skills(find_repo_root)
+  when "help", "--help", "-h", nil
+    puts <<~USAGE
+      Usage: agent-skills COMMAND [ARGS]
+
+      Commands:
+        add [--name NAME] [--ref REF] GITHUB_URL
+            Track a GitHub skill URL, update the lock file, and install immediately.
+
+        install
+            Install skills using only resolved commits from the lock file.
+
+        update (--all | SKILL_NAME)
+            Resolve refs from the manifest to new commit hashes, update the lock file,
+            and reinstall the selected skill(s).
+
+        list
+            Show tracked vendored skills.
+    USAGE
+  else
+    raise AgentSkillsError, "unknown command: #{command}"
+  end
+end
+
+def ensure_no_args!(argv, usage)
+  raise AgentSkillsError, usage unless argv.empty?
+end
+
+def find_repo_root
+  if ENV["AGENT_SKILLS_DOTFILES"] && !ENV["AGENT_SKILLS_DOTFILES"].empty?
+    root = File.expand_path(ENV.fetch("AGENT_SKILLS_DOTFILES"))
+    return root if File.directory?(File.join(root, SKILLS_REL))
+
+    raise AgentSkillsError, "AGENT_SKILLS_DOTFILES does not look like this dotfiles repo: #{root}"
+  end
+
+  start = File.realpath(__FILE__)
+  candidates = [start, *File.dirname(start).then { |dir| ancestors(dir) }]
+  candidates.each do |candidate|
+    return candidate if File.directory?(File.join(candidate, SKILLS_REL))
+  end
+
+  raise AgentSkillsError, "could not find dotfiles repo root; set AGENT_SKILLS_DOTFILES"
+end
+
+def ancestors(path)
+  result = []
+  current = path
+  loop do
+    result << current
+    parent = File.dirname(current)
+    break if parent == current
+
+    current = parent
+  end
+  result
+end
+
+def add(root, url, options)
+  skill = parse_skill_url(url, name: options[:name], ref: options[:ref])
+  skills = read_manifest(root)
+  raise AgentSkillsError, "skill already tracked: #{skill.name}" if skills.any? { |existing| existing.name == skill.name }
+
+  locked = resolve_lock(root, skill)
+  verify_locked_skill!(locked)
+
+  skills << skill
+  write_manifest(root, skills)
+  ensure_gitignore_entry(root, skill.name)
+  write_lock(root, upsert_lock(read_lock(root), locked))
+  install_locked_skill(root, locked)
+  puts "added and installed #{skill.name} @ #{locked.resolved}"
+end
+
+def install(root)
+  locks = read_lock(root)
+  raise AgentSkillsError, "no locked skills found; use 'agent-skills add' or 'agent-skills update --all'" if locks.empty?
+
+  locks.each do |locked|
+    install_locked_skill(root, locked)
+    puts "installed #{locked.name} @ #{locked.resolved}"
+  end
+end
+
+def update(root, selected_name)
+  skills = read_manifest(root)
+  raise AgentSkillsError, "no skills tracked" if skills.empty?
+
+  selected = if selected_name
+    skills.select { |skill| skill.name == selected_name }.tap do |matches|
+      raise AgentSkillsError, "unknown skill: #{selected_name}" if matches.empty?
+    end
+  else
+    skills
+  end
+
+  locks = read_lock(root)
+  selected.each do |skill|
+    locked = resolve_lock(root, skill)
+    locks = upsert_lock(locks, locked)
+    install_locked_skill(root, locked)
+    puts "updated #{skill.name} -> #{locked.resolved}"
+  end
+  write_lock(root, locks)
+end
+
+def list_skills(root)
+  skills = read_manifest(root)
+  if skills.empty?
+    puts "no vendored skills tracked"
+    return
+  end
+
+  locks = read_lock(root).to_h { |lock| [lock.name, lock] }
+  skills.each do |skill|
+    resolved = locks.fetch(skill.name, nil)&.resolved || "unlocked"
+    puts [skill.name, skill.repo, skill.ref, resolved, skill.path].join("\t")
+  end
+end
+
+def parse_skill_url(url, name:, ref:)
+  parsed = URI.parse(url)
+  raise AgentSkillsError, "only github.com blob/tree URLs are supported for now" unless parsed.host == "github.com"
+
+  parts = parsed.path.split("/").reject(&:empty?)
+  unless parts.length >= 5 && %w[blob tree].include?(parts[2])
+    raise AgentSkillsError, "expected a GitHub blob/tree URL like https://github.com/owner/repo/blob/main/skills/name"
+  end
+
+  skill_name = name || parts.last
+  validate_name!(skill_name)
+
+  Skill.new(
+    name: skill_name,
+    source: url,
+    repo: "https://github.com/#{parts[0]}/#{parts[1]}.git",
+    path: parts[4..].join("/"),
+    ref: ref || parts[3]
+  )
+end
+
+def validate_name!(name)
+  return if name.match?(/\A[A-Za-z0-9._-]+\z/)
+
+  raise AgentSkillsError, "invalid skill name: #{name.inspect}"
+end
+
+def read_manifest(root)
+  read_toml_array(File.join(root, MANIFEST_REL)).map do |item|
+    Skill.new(
+      name: item.fetch("name"),
+      source: item.fetch("source", ""),
+      repo: item.fetch("repo"),
+      path: item.fetch("path"),
+      ref: item.fetch("ref")
+    )
+  end
+end
+
+def write_manifest(root, skills)
+  path = File.join(root, MANIFEST_REL)
+  FileUtils.mkdir_p(File.dirname(path))
+  File.write(path, <<~TOML)
+    # Vendored agent skills managed by agent-skills.
+    #{skills.map { |skill| manifest_entry(skill) }.join("\n")}
+  TOML
+end
+
+def manifest_entry(skill)
+  <<~TOML
+
+    [[skills]]
+    name = #{toml_string(skill.name)}
+    source = #{toml_string(skill.source)}
+    repo = #{toml_string(skill.repo)}
+    path = #{toml_string(skill.path)}
+    ref = #{toml_string(skill.ref)}
+  TOML
+end
+
+def read_lock(root)
+  read_toml_array(File.join(root, LOCK_REL)).map do |item|
+    LockedSkill.new(
+      name: item.fetch("name"),
+      repo: item.fetch("repo"),
+      path: item.fetch("path"),
+      ref: item.fetch("ref"),
+      resolved: item.fetch("resolved")
+    )
+  end
+end
+
+def write_lock(root, locks)
+  path = File.join(root, LOCK_REL)
+  FileUtils.mkdir_p(File.dirname(path))
+  File.write(path, <<~TOML)
+    # Resolved commits used by agent-skills install.
+    #{locks.map { |lock| lock_entry(lock) }.join("\n")}
+  TOML
+end
+
+def lock_entry(lock)
+  <<~TOML
+
+    [[skills]]
+    name = #{toml_string(lock.name)}
+    repo = #{toml_string(lock.repo)}
+    path = #{toml_string(lock.path)}
+    ref = #{toml_string(lock.ref)}
+    resolved = #{toml_string(lock.resolved)}
+  TOML
+end
+
+def read_toml_array(path)
+  return [] unless File.exist?(path)
+
+  items = []
+  current = nil
+
+  File.readlines(path, chomp: true).each do |line|
+    stripped = line.strip
+    next if stripped.empty? || stripped.start_with?("#")
+
+    if stripped == "[[skills]]"
+      current = {}
+      items << current
+      next
+    end
+
+    match = stripped.match(/\A([A-Za-z0-9_-]+)\s*=\s*"(.*)"\z/)
+    raise AgentSkillsError, "unsupported TOML line in #{path}: #{line}" unless match && current
+
+    current[match[1]] = toml_unescape(match[2])
+  end
+
+  items
+end
+
+def toml_string(value)
+  "\"#{value.to_s.gsub("\\", "\\\\").gsub('"', '\\"')}\""
+end
+
+def toml_unescape(value)
+  value.gsub(/\\([\\"])/, "\\" => "\\", '"' => '"')
+end
+
+def upsert_lock(locks, locked)
+  replaced = false
+  updated = locks.map do |existing|
+    if existing.name == locked.name
+      replaced = true
+      locked
+    else
+      existing
+    end
+  end
+  updated << locked unless replaced
+  updated
+end
+
+def resolve_lock(root, skill)
+  repo_dir = ensure_repo(skill.repo)
+  run!(%W[git fetch --tags origin #{skill.ref}], chdir: repo_dir)
+  resolved = run!(%w[git rev-parse FETCH_HEAD^{commit}], chdir: repo_dir).strip
+  raise AgentSkillsError, "could not resolve commit for #{skill.name}" unless resolved.match?(/\A[0-9a-f]{40}\z/)
+
+  LockedSkill.new(name: skill.name, repo: skill.repo, path: skill.path, ref: skill.ref, resolved: resolved)
+end
+
+def install_locked_skill(root, locked)
+  repo_dir = ensure_repo(locked.repo)
+  run!(%W[git fetch --tags origin #{locked.ref}], chdir: repo_dir)
+  unless system("git", "cat-file", "-e", "#{locked.resolved}^{commit}", chdir: repo_dir, out: File::NULL, err: File::NULL)
+    run!(%W[git fetch origin #{locked.resolved}], chdir: repo_dir)
+  end
+
+  destination = File.join(root, SKILLS_REL, locked.name)
+  validate_destination!(destination)
+
+  Dir.mktmpdir("agent-skills-#{locked.name}-") do |temp|
+    run!(%W[git --work-tree #{temp} checkout #{locked.resolved} -- #{locked.path}], chdir: repo_dir)
+    source = File.join(temp, locked.path)
+    raise AgentSkillsError, "skill path not found in #{locked.name}: #{locked.path}" unless File.directory?(source)
+    raise AgentSkillsError, "skill path does not contain SKILL.md: #{locked.path}" unless File.file?(File.join(source, "SKILL.md"))
+
+    replacement = File.join(File.dirname(destination), ".#{File.basename(destination)}.agent-skills-tmp")
+    remove_path(replacement) if File.exist?(replacement) || File.symlink?(replacement)
+    FileUtils.cp_r(source, replacement, preserve: true)
+    File.write(File.join(replacement, MARKER), <<~MARKER)
+      name = #{locked.name}
+      repo = #{locked.repo}
+      path = #{locked.path}
+      ref = #{locked.ref}
+      resolved = #{locked.resolved}
+    MARKER
+
+    remove_path(destination) if File.exist?(destination) || File.symlink?(destination)
+    File.rename(replacement, destination)
+  end
+end
+
+def verify_locked_skill!(locked)
+  repo_dir = ensure_repo(locked.repo)
+
+  Dir.mktmpdir("agent-skills-verify-#{locked.name}-") do |temp|
+    run!(%W[git --work-tree #{temp} checkout #{locked.resolved} -- #{locked.path}], chdir: repo_dir)
+    source = File.join(temp, locked.path)
+    raise AgentSkillsError, "skill path not found in #{locked.name}: #{locked.path}" unless File.directory?(source)
+    raise AgentSkillsError, "skill path does not contain SKILL.md: #{locked.path}" unless File.file?(File.join(source, "SKILL.md"))
+  end
+end
+
+def validate_destination!(destination)
+  return unless File.exist?(destination) || File.symlink?(destination)
+  return if File.directory?(destination) && File.file?(File.join(destination, MARKER))
+
+  raise AgentSkillsError,
+    "refusing to overwrite unmanaged skill directory: #{destination} (missing #{MARKER})"
+end
+
+def ensure_repo(repo)
+  cache_dir = File.join(Dir.home, ".cache", "agent-skills", "repos")
+  FileUtils.mkdir_p(cache_dir)
+  repo_dir = File.join(cache_dir, cache_name(repo))
+  return repo_dir if File.directory?(repo_dir)
+
+  run!(%W[git clone --no-checkout #{repo} #{repo_dir}], chdir: Dir.pwd)
+  repo_dir
+end
+
+def cache_name(repo)
+  parsed = URI.parse(repo)
+  name = parsed.host ? "#{parsed.host}#{parsed.path}" : repo
+  name.gsub(/[^A-Za-z0-9._-]+/, "_").sub(/\.git\z/, "").gsub(/\A_+|_+\z/, "")
+end
+
+def ensure_gitignore_entry(root, skill_name)
+  path = File.join(root, ".gitignore")
+  entry = "/#{SKILLS_REL}/#{skill_name}/"
+  current = File.exist?(path) ? File.read(path) : ""
+
+  lines = current.lines.map(&:chomp)
+  header_index = lines.index(IGNORE_HEADER)
+
+  prefix = header_index ? lines[...header_index] : lines
+  entries = header_index ? lines[(header_index + 1)..].reject(&:empty?) : []
+  entries << entry unless entries.include?(entry)
+
+  prefix.pop while prefix.last == ""
+
+  updated = prefix
+  updated << "" unless updated.empty?
+  updated << IGNORE_HEADER
+  updated.concat(entries)
+
+  File.write(path, "#{updated.join("\n")}\n")
+end
+
+def remove_path(path)
+  if File.symlink?(path) || File.file?(path)
+    File.unlink(path)
+  else
+    FileUtils.rm_rf(path)
+  end
+end
+
+def run!(command, chdir:)
+  stdout, stderr, status = Open3.capture3(*command, chdir: chdir)
+  return stdout if status.success?
+
+  details = stderr.empty? ? stdout : stderr
+  raise AgentSkillsError, "command failed: #{command.join(" ")}\n#{details.strip}"
+end
+
+begin
+  main(ARGV)
+rescue AgentSkillsError => e
+  warn "agent-skills: #{e.message}"
+  exit 1
+end
