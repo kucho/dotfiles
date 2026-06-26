@@ -8,7 +8,6 @@ status = { missing_tools = "always" }
 
 [tools]
 age = "latest"
-ast-grep = "latest"
 biome = "latest"
 delta = "latest"
 difftastic = "latest"
