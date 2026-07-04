@@ -23,3 +23,67 @@ path = "skills/github"
 ref = "main"
 resolved = "f1c881db21a9ec53977ff8379b74e64e290fef93"
 
+
+[[skills]]
+name = "domain-modeling"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/engineering/domain-modeling"
+ref = "main"
+resolved = "272f99b22574f50e4266791c86b9302682970e23"
+
+
+[[skills]]
+name = "grilling"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/grilling"
+ref = "main"
+resolved = "272f99b22574f50e4266791c86b9302682970e23"
+
+
+[[skills]]
+name = "grill-me"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/grill-me"
+ref = "main"
+resolved = "272f99b22574f50e4266791c86b9302682970e23"
+
+
+[[skills]]
+name = "handoff"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/handoff"
+ref = "main"
+resolved = "272f99b22574f50e4266791c86b9302682970e23"
+
+
+[[skills]]
+name = "teach"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/teach"
+ref = "main"
+resolved = "272f99b22574f50e4266791c86b9302682970e23"
+
+
+[[skills]]
+name = "writing-great-skills"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/writing-great-skills"
+ref = "main"
+resolved = "272f99b22574f50e4266791c86b9302682970e23"
+
+
+[[skills]]
+name = "grill-with-docs"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/engineering/grill-with-docs"
+ref = "main"
+resolved = "272f99b22574f50e4266791c86b9302682970e23"
+
+
+[[skills]]
+name = "code-review"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/engineering/code-review"
+ref = "main"
+resolved = "272f99b22574f50e4266791c86b9302682970e23"
+

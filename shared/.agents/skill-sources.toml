@@ -23,3 +23,67 @@ repo = "https://github.com/mitsuhiko/agent-stuff.git"
 path = "skills/github"
 ref = "main"
 
+
+[[skills]]
+name = "domain-modeling"
+source = "https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/engineering/domain-modeling"
+ref = "main"
+
+
+[[skills]]
+name = "grilling"
+source = "https://github.com/mattpocock/skills/tree/main/skills/productivity/grilling"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/grilling"
+ref = "main"
+
+
+[[skills]]
+name = "grill-me"
+source = "https://github.com/mattpocock/skills/tree/main/skills/productivity/grill-me"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/grill-me"
+ref = "main"
+
+
+[[skills]]
+name = "handoff"
+source = "https://github.com/mattpocock/skills/tree/main/skills/productivity/handoff"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/handoff"
+ref = "main"
+
+
+[[skills]]
+name = "teach"
+source = "https://github.com/mattpocock/skills/tree/main/skills/productivity/teach"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/teach"
+ref = "main"
+
+
+[[skills]]
+name = "writing-great-skills"
+source = "https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-great-skills"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/writing-great-skills"
+ref = "main"
+
+
+[[skills]]
+name = "grill-with-docs"
+source = "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/engineering/grill-with-docs"
+ref = "main"
+
+
+[[skills]]
+name = "code-review"
+source = "https://github.com/mattpocock/skills/blob/main/skills/engineering/code-review"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/engineering/code-review"
+ref = "main"
+
