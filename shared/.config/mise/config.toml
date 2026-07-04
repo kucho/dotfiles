@@ -8,6 +8,7 @@ status = { missing_tools = "always" }
 
 [tools]
 age = "latest"
+aws-cli = { version = "latest", symlink_bins = "true" }
 biome = "latest"
 delta = "latest"
 difftastic = "latest"
