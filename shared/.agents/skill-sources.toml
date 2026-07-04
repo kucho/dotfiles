@@ -87,3 +87,11 @@ repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/code-review"
 ref = "main"
 
+
+[[skills]]
+name = "improve-codebase-architecture"
+source = "https://github.com/mattpocock/skills/blob/main/skills/engineering/improve-codebase-architecture"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/engineering/improve-codebase-architecture"
+ref = "main"
+
