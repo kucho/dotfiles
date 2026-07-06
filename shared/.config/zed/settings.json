@@ -129,6 +129,11 @@
 		}
 	},
 	"lsp": {
+		"ruby-lsp": {
+			"settings": {
+				"use_bundler": false
+			}
+		},
 		"tailwindcss-language-server": {
 			"settings": {
 				"experimental": {
