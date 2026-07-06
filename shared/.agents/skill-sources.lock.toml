@@ -81,14 +81,6 @@ resolved = "272f99b22574f50e4266791c86b9302682970e23"
 
 
 [[skills]]
-name = "code-review"
-repo = "https://github.com/mattpocock/skills.git"
-path = "skills/engineering/code-review"
-ref = "main"
-resolved = "272f99b22574f50e4266791c86b9302682970e23"
-
-
-[[skills]]
 name = "improve-codebase-architecture"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/improve-codebase-architecture"

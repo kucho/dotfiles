@@ -32,7 +32,8 @@ agent-skills add https://github.com/owner/repo/blob/main/skills/name
 agent-skills install
 agent-skills update name
 agent-skills update --all
+agent-skills remove name
 agent-skills list
 ```
 
-`install` uses the lock file's resolved commit hashes. `update` is the command that refreshes those hashes from the manifest refs.
+`install` uses the lock file's resolved commit hashes. `update` is the command that refreshes those hashes from the manifest refs. `remove` drops a vendored skill from the manifest and lock file, removes its ignore entry, and deletes the managed install directory.

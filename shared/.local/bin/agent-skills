@@ -35,6 +35,10 @@ def main(argv)
   when "install"
     ensure_no_args!(argv, "Usage: agent-skills install")
     install(find_repo_root)
+  when "remove", "rm"
+    selected_name = argv.fetch(0) { raise AgentSkillsError, "Usage: agent-skills remove SKILL_NAME" }
+    ensure_no_args!(argv.drop(1), "Usage: agent-skills remove SKILL_NAME")
+    remove(find_repo_root, selected_name)
   when "update"
     options = { all: false }
     parser = OptionParser.new do |opts|
@@ -63,6 +67,9 @@ def main(argv)
         update (--all | SKILL_NAME)
             Resolve refs from the manifest to new commit hashes, update the lock file,
             and reinstall the selected skill(s).
+
+        remove SKILL_NAME
+            Stop tracking a vendored skill and delete its managed install directory.
 
         list
             Show tracked vendored skills.
@@ -152,6 +159,23 @@ def update(root, selected_name)
     puts "updated #{skill.name} -> #{locked.resolved}"
   end
   write_lock(root, locks)
+end
+
+def remove(root, selected_name)
+  validate_name!(selected_name)
+
+  skills = read_manifest(root)
+  locks = read_lock(root)
+  known = skills.any? { |skill| skill.name == selected_name } || locks.any? { |lock| lock.name == selected_name } || installed_skill?(root, selected_name)
+  raise AgentSkillsError, "unknown skill: #{selected_name}" unless known
+
+  validate_removable_install!(root, selected_name)
+
+  write_manifest(root, skills.reject { |skill| skill.name == selected_name })
+  write_lock(root, locks.reject { |lock| lock.name == selected_name })
+  remove_gitignore_entry(root, selected_name)
+  remove_installed_skill(root, selected_name)
+  puts "removed #{selected_name}"
 end
 
 def list_skills(root)
@@ -396,14 +420,55 @@ def ensure_gitignore_entry(root, skill_name)
   entries = header_index ? lines[(header_index + 1)..].reject(&:empty?) : []
   entries << entry unless entries.include?(entry)
 
+  write_gitignore(path, prefix, entries)
+end
+
+def remove_gitignore_entry(root, skill_name)
+  path = File.join(root, ".gitignore")
+  return unless File.exist?(path)
+
+  entry = "/#{SKILLS_REL}/#{skill_name}/"
+  lines = File.readlines(path, chomp: true)
+  header_index = lines.index(IGNORE_HEADER)
+  return unless header_index
+
+  prefix = lines[...header_index]
+  entries = lines[(header_index + 1)..].reject(&:empty?)
+  entries.delete(entry)
+
+  write_gitignore(path, prefix, entries)
+end
+
+def write_gitignore(path, prefix, entries)
   prefix.pop while prefix.last == ""
 
   updated = prefix
-  updated << "" unless updated.empty?
-  updated << IGNORE_HEADER
-  updated.concat(entries)
+  if entries.any?
+    updated << "" unless updated.empty?
+    updated << IGNORE_HEADER
+    updated.concat(entries)
+  end
 
   File.write(path, "#{updated.join("\n")}\n")
+end
+
+def installed_skill?(root, skill_name)
+  destination = File.join(root, SKILLS_REL, skill_name)
+  File.exist?(destination) || File.symlink?(destination)
+end
+
+def validate_removable_install!(root, skill_name)
+  destination = File.join(root, SKILLS_REL, skill_name)
+  return unless installed_skill?(root, skill_name)
+  return if File.directory?(destination) && File.file?(File.join(destination, MARKER))
+
+  raise AgentSkillsError,
+    "refusing to remove unmanaged skill directory: #{destination} (missing #{MARKER})"
+end
+
+def remove_installed_skill(root, skill_name)
+  destination = File.join(root, SKILLS_REL, skill_name)
+  remove_path(destination) if File.exist?(destination) || File.symlink?(destination)
 end
 
 def remove_path(path)
