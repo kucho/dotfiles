@@ -10,6 +10,7 @@ status = { missing_tools = "always" }
 age = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
 biome = "latest"
+codex = "latest"
 delta = "latest"
 difftastic = "latest"
 elasticsearch = "7"
@@ -23,6 +24,7 @@ lazydocker = "latest"
 lazygit = "latest"
 lsd = "latest"
 node = "lts"
+pi = "latest"
 ruby = { version = "latest", depends = ["rust"] }
 rust = { version = "latest", components = "rust-analyzer,rust-src" }
 starship = { version = "latest", postinstall = "starship preset pure-preset -o ~/.config/starship.toml" }
@@ -30,7 +32,5 @@ usage = "latest"
 zoxide = "latest"
 
 # Node.js
-"npm:@earendil-works/pi-coding-agent" = "latest"
 "npm:@herb-tools/language-server" = "latest"
 "npm:agent-browser" = "latest"
-"npm:@openai/codex" = "latest"
