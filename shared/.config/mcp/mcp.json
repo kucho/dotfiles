@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "appsignal": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://appsignal.com/api/mcp"]
+    }
+  }
+}
