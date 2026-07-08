@@ -14,6 +14,11 @@ fnox activate fish | source
 
 if not type -q fisher
   curl -sL https://git.io/fisher | source
+  fisher install jorgebucaran/fisher
+end
+
+if not set -q _fisher_plugins[1]
+  fisher update
 end
 
 starship init fish | source
