@@ -1,6 +1,10 @@
 ---
 name: commit-messages
-description: Commit messages. Use when asked to write or rewrite a commit message, split work into atomic commit messages, or when the user explicitly asks you to create a git commit.
+description: >
+  Commit message proof. Use when writing or rewriting commit messages,
+  splitting a change into atomic commits, rewording a series or stack,
+  addressing PR feedback on commit messages, or when the user explicitly
+  asks to create a git commit.
 ---
 
 # Commit Messages
@@ -11,13 +15,20 @@ Never run `git commit` unless the user explicitly asks you to create a commit.
 
 ## Branch
 
-First decide the user's target:
+First decide the user's **target**:
 
 - **Message-only**: inspect the relevant diff and write the message; do not stage or commit.
 - **Explicit commit**: only when the user asks you to create a commit, verify the staged boundary, stage only intended files or hunks if needed, then commit.
-- **Series**: split work by atomic boundary; output messages unless the user explicitly asks you to create the commits.
+- **Split**: divide work by atomic boundary into multiple commits; output messages unless the user explicitly asks you to create the commits.
 
-Completion criterion: the target is clear, and `git commit` is gated on an explicit commit request.
+Then decide **write shape**:
+
+- **Single**: one commit, or messages that do not share a stack goal with siblings.
+- **Series**: a multi-commit stack that shares one goal — including a new split, rewording an existing stack, or PR feedback about tying commits together / cold landing.
+
+When write shape is series, load [`SERIES.md`](SERIES.md) **before** drafting any message and apply it to every commit in the stack.
+
+Completion criterion: the target and write shape are clear; `git commit` is gated on an explicit commit request; series runs have loaded `SERIES.md`.
 
 ## Steps
 
@@ -37,7 +48,7 @@ Completion criterion: the intended diff, unrelated worktree changes, and evidenc
 
 Make each commit one logical change. If staged changes already exist, treat them as user intent and do not rewrite the staged set without checking. Never use `git add .` unless the user explicitly asks and the status is cleanly understood; prefer explicit paths or patch staging.
 
-Completion criterion: `git diff --cached` contains one logical change and excludes unrelated files or hunks.
+Completion criterion: `git diff --cached` contains one logical change and excludes unrelated files or hunks. For a split, every planned commit has a clear boundary.
 
 ### 3. Choose the Proof Branch
 
@@ -63,7 +74,7 @@ Title contract:
 - Keep under 60 characters when practical.
 - Avoid generic areas like `Fix:` or `Feature:`; ticket prefixes do not replace the subject.
 
-Body contract:
+Body contract (single write shape):
 
 - Paragraph 1: why now and what prior state failed, risked, or made hard.
 - Paragraph 2: what approach this commit takes and why this boundary is right.
@@ -71,7 +82,7 @@ Body contract:
 - Use connected prose. Use bullets only for related evidence; a bullet per file or independent change means split the commit.
 - Omit the body only when the title carries the full proof for a low-risk obvious change.
 
-For series commits, reference the predecessor and say why this is separate. Use short SHA plus subject for landed commits; use subject only for earlier commits in the same unmerged stack. Do not copy-paste the same preamble across the series.
+Series write shape: do not use the single body contract alone. Apply [`SERIES.md`](SERIES.md) for the series banner, residual body, and cold-landing test; then approach and evidence as above.
 
 ```bash
 git commit -m "title" -m "body paragraph"
@@ -79,7 +90,11 @@ git commit -m "title" -m "body paragraph"
 
 For message-only requests, output the title and body without committing.
 
-Completion criterion: the title follows the title contract, the body follows the body contract or is intentionally omitted, and no unknown context has been invented.
+Completion criterion:
+
+- Title follows the title contract; no unknown context invented.
+- **Single**: body follows the single body contract or is intentionally omitted.
+- **Series**: every message in the stack satisfies [`SERIES.md`](SERIES.md) (shared series banner, residual body, cold landing).
 
 ## Calibration
 
