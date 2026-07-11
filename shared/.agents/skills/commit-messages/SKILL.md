@@ -84,6 +84,15 @@ Body contract (single write shape):
 
 Series write shape: do not use the single body contract alone. Apply [`SERIES.md`](SERIES.md) for the series banner, residual body, and cold-landing test; then approach and evidence as above.
 
+Every residual and approach sentence must be **grounded**:
+
+- Name the thing in the project's words (package, gem, import path, class, file role) — not an invented category ("framework JS", "surface", "artifact", "graph").
+- State the human premise when it is the reason (e.g. we are not actively developing X and are moving off it). Do not invent a technical euphemism for that premise ("frozen", "treat as immutable").
+- Prefer what the old code *did* over abstract migration talk ("re-resolve the package", "load path ownership").
+- Facts only from step 1. If a claim is not in the diff, tests, logs, or user text, drop it.
+
+Before finishing, re-read each body as a cold reviewer with only that commit: any sentence that needs a sibling commit, unstated jargon, or a policy you just coined fails — rewrite it.
+
 ```bash
 git commit -m "title" -m "body paragraph"
 ```
@@ -93,6 +102,8 @@ For message-only requests, output the title and body without committing.
 Completion criterion:
 
 - Title follows the title contract; no unknown context invented.
+- Every residual/approach sentence is grounded (project nouns; no invented policy or category jargon).
+- Cold re-read of each body passes without sibling commits or unstated terms.
 - **Single**: body follows the single body contract or is intentionally omitted.
 - **Series**: every message in the stack satisfies [`SERIES.md`](SERIES.md) (shared series banner, residual body, cold landing).
 
