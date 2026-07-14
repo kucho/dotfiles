@@ -32,7 +32,7 @@ Completion criterion: the target and write shape are clear; `git commit` is gate
 
 ## Steps
 
-### 1. Inspect the Diff
+### 1. Inspect the Change and Evidence
 
 ```bash
 git status --short
@@ -40,9 +40,9 @@ git diff
 git diff --cached
 ```
 
-Extract message facts only from the diff, test output, logs, command output, existing code, issue text, or user-provided context.
+Extract message facts only from the diff, test output, logs, command output, existing code, issue text, git history, or user-provided context. Include relevant evidence already established earlier in the work; do not narrow the message back to the diff alone.
 
-Completion criterion: the intended diff, unrelated worktree changes, and evidence available for the message are known.
+Completion criterion: the intended diff, unrelated worktree changes, and evidence already available for the message are known. Bug-fix claims are not ready until step 3's evidence criterion passes.
 
 ### 2. Establish the Boundary
 
@@ -54,16 +54,26 @@ Completion criterion: `git diff --cached` contains one logical change and exclud
 
 Pick the proof this commit needs. If several apply, use the riskiest or most review-relevant branch as primary.
 
-- **Bug fix**: observed failure, cause, fix, verification.
+- **Bug fix**: verified failure chain, fix boundary, regression evidence.
 - **Refactor**: preserved behavior, better shape, coverage or call-site review.
 - **Optimization**: old cost, new shape, measurement or concrete expected reduction.
 - **Dead-code removal**: why unused, how verified, compatibility or dependency caveats.
 - **Mechanical/generated**: tool or process, semantic boundary, validation.
 - **Upgrade/migration/rollout**: old/new state, ordering, compatibility, deploy or cleanup constraints.
 
-For risky or non-obvious commits, load [`PROOF_BRANCHES.md`](PROOF_BRANCHES.md) and apply the selected branch's checklist.
+For every bug fix, require the available evidence to support this **failure chain** before stating it in the message:
 
-Completion criterion: the message has a primary proof branch, and every safety claim is calibrated to available evidence.
+`trigger → failing operation and symptom → producer of the bad value or state → why it produces that value or state → changed boundary → regression evidence`
+
+Do not investigate missing links as part of this skill. If the chain is incomplete, either narrow the message to verified behavior or identify the missing evidence before writing or committing a stronger causal claim.
+
+Only attribute behavior to an external dependency when the available context includes verified source, documentation, or runtime evidence. Only describe regression evidence as production-faithful when the context establishes that it exercises the same or a justified equivalent seam.
+
+Retain already-established issue, review, and git-history facts when they explain why the failure exists, why earlier handling was incomplete, or why this boundary was chosen. Do not perform additional archaeology when the failure chain and "why now" are already complete.
+
+For risky or non-obvious non-bug commits, load [`PROOF_BRANCHES.md`](PROOF_BRANCHES.md) and apply the selected branch's checklist.
+
+Completion criterion: the primary proof branch is clear and every safety claim is calibrated to available evidence. Every bug-fix causal claim maps to evidence already present in the diff, test output, logs, source excerpts, issue/history context, or user-provided context. Unsupported links are removed from the message or reported as missing evidence; relevant already-known history is retained.
 
 ### 4. Write or Commit
 
@@ -71,6 +81,7 @@ Title contract:
 
 - Shape: `Area: Imperative subject` when the change has a clear area; otherwise `Imperative subject`.
 - Area is the domain, subsystem, gem, tool, or upgrade track: `Invoices:`, `Sidekiq:`, `AgingSummary:`, `Rails 7.0:`.
+- Name the verified behavior or boundary; do not generalize an inferred cause into the title.
 - Keep under 60 characters when practical.
 - Avoid generic areas like `Fix:` or `Feature:`; ticket prefixes do not replace the subject.
 
@@ -102,6 +113,7 @@ For message-only requests, output the title and body without committing.
 Completion criterion:
 
 - Title follows the title contract; no unknown context invented.
+- Bug fixes satisfy step 3's failure-chain criterion before any message or commit is finalized.
 - Every residual/approach sentence is grounded (project nouns; no invented policy or category jargon).
 - Cold re-read of each body passes without sibling commits or unstated terms.
 - **Single**: body follows the single body contract or is intentionally omitted.

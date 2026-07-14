@@ -1,10 +1,6 @@
 # Proof Branches
 
-Use this reference after selecting a proof branch for a risky or non-obvious commit. The branch's job is to identify what evidence the message must carry.
-
-## Bug Fix
-
-Start from the observed failure: bad behavior, rendered artifact, exception, error output, trace, or reproduction path. Explain the cause/fix link so the reader can see that the change addresses the source of the failure, not just a symptom.
+Use this reference after selecting a risky or non-obvious non-bug proof branch. The universal bug-fix evidence contract lives inline in `SKILL.md` because every bug fix must apply it.
 
 ## Refactor
 
