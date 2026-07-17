@@ -1,0 +1,20 @@
+{
+  "collapseChangelog": true,
+  "defaultModel": "grok-4.5",
+  "defaultProvider": "xai",
+  "defaultThinkingLevel": "high",
+  "lastChangelogVersion": "0.80.10",
+  "packages": [
+    "npm:@plannotator/pi-extension",
+    "npm:glimpseui",
+    "npm:pi-bash-live-view",
+    "npm:pi-caffeinate",
+    "npm:pi-interview",
+    "npm:pi-mcp-adapter",
+    "npm:pi-subagents"
+  ],
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "theme": "light/dark"
+}
