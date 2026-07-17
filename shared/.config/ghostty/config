@@ -1,5 +1,6 @@
 alpha-blending = linear-corrected
 auto-update = download
+auto-update-channel = tip
 clipboard-paste-protection = false
 confirm-close-surface = false
 cursor-style = block
