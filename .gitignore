@@ -2,7 +2,6 @@
 /linux/.local/bin
 
 # agent-skills managed vendored skills
-/shared/.agents/skills/web-browser/
 /shared/.agents/skills/agent-browser/
 /shared/.agents/skills/github/
 /shared/.agents/skills/domain-modeling/
