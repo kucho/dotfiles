@@ -5,7 +5,7 @@ name = "agent-browser"
 repo = "https://github.com/vercel-labs/agent-browser.git"
 path = "skills/agent-browser"
 ref = "main"
-resolved = "dcbe3522f931d24f85a786ba6ba7f343d86f7294"
+resolved = "81c336c1c20b80ac648e0416a7b6e0c0ae7878bb"
 
 
 [[skills]]
@@ -13,7 +13,7 @@ name = "github"
 repo = "https://github.com/mitsuhiko/agent-stuff.git"
 path = "skills/github"
 ref = "main"
-resolved = "4bce45560fa55ace2f5dc8634a63a2af464ddc8b"
+resolved = "cc4b711dc6a2bee2aefb89820600e38291500543"
 
 
 [[skills]]
@@ -21,7 +21,7 @@ name = "domain-modeling"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/domain-modeling"
 ref = "main"
-resolved = "66898f60e8c744e269f8ce06c2b2b99ce7660d5f"
+resolved = "9603c1cc8118d08bc1b3bf34cf714f62178dea3b"
 
 
 [[skills]]
@@ -29,7 +29,7 @@ name = "grilling"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/grilling"
 ref = "main"
-resolved = "66898f60e8c744e269f8ce06c2b2b99ce7660d5f"
+resolved = "9603c1cc8118d08bc1b3bf34cf714f62178dea3b"
 
 
 [[skills]]
@@ -37,7 +37,7 @@ name = "grill-me"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/grill-me"
 ref = "main"
-resolved = "66898f60e8c744e269f8ce06c2b2b99ce7660d5f"
+resolved = "9603c1cc8118d08bc1b3bf34cf714f62178dea3b"
 
 
 [[skills]]
@@ -45,7 +45,7 @@ name = "handoff"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/handoff"
 ref = "main"
-resolved = "66898f60e8c744e269f8ce06c2b2b99ce7660d5f"
+resolved = "9603c1cc8118d08bc1b3bf34cf714f62178dea3b"
 
 
 [[skills]]
@@ -53,7 +53,7 @@ name = "teach"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/teach"
 ref = "main"
-resolved = "66898f60e8c744e269f8ce06c2b2b99ce7660d5f"
+resolved = "9603c1cc8118d08bc1b3bf34cf714f62178dea3b"
 
 
 [[skills]]
@@ -61,7 +61,7 @@ name = "writing-great-skills"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/writing-great-skills"
 ref = "main"
-resolved = "66898f60e8c744e269f8ce06c2b2b99ce7660d5f"
+resolved = "9603c1cc8118d08bc1b3bf34cf714f62178dea3b"
 
 
 [[skills]]
@@ -69,7 +69,7 @@ name = "grill-with-docs"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/grill-with-docs"
 ref = "main"
-resolved = "66898f60e8c744e269f8ce06c2b2b99ce7660d5f"
+resolved = "9603c1cc8118d08bc1b3bf34cf714f62178dea3b"
 
 
 [[skills]]
@@ -77,5 +77,5 @@ name = "improve-codebase-architecture"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/improve-codebase-architecture"
 ref = "main"
-resolved = "66898f60e8c744e269f8ce06c2b2b99ce7660d5f"
+resolved = "9603c1cc8118d08bc1b3bf34cf714f62178dea3b"
 
