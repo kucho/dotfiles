@@ -1,5 +1,6 @@
 *known_hosts*
 /linux/.local/bin
+node_modules/
 
 # agent-skills managed vendored skills
 /shared/.agents/skills/agent-browser/
