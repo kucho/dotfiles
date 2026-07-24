@@ -3,7 +3,7 @@
   "defaultModel": "grok-4.5",
   "defaultProvider": "xai",
   "defaultThinkingLevel": "high",
-  "lastChangelogVersion": "0.80.10",
+  "lastChangelogVersion": "0.82.0",
   "packages": [
     "npm:@plannotator/pi-extension",
     "npm:glimpseui",
