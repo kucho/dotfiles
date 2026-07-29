@@ -1,41 +1,45 @@
 # Rails Testing Checklist
 
-Load this for non-trivial test edits or reviews. Reject or repair every changed trap that appears.
+Load this for non-trivial test edits or reviews. Scan every changed example, touched setup block, expected value, and introduced test double. Repair each detected trap or justify it with a repository-local constraint.
 
-## Receiver-driven unit tests
+## Receiver scan
 
-- `let(:klass) { MyObject }` instead of naming `MyObject` directly.
-- Free-form unit `describe` strings such as `describe "attribute assignment"`; use `describe ".method"` or `describe "#method"`.
-- Unit `describe` blocks ordered differently from the source methods.
-- `subject { SomeClass.some_method }` when the `describe` is for `.some_method`; `subject` must be the receiver.
-- Side-effectful `subject` setup such as persistence, HTTP requests, collaborator mutation, or any other work that belongs in scoped `before`/`let` setup.
-- Calling the method under test only in `before`, or only through a precomputed subject, instead of inside each `it`.
-- Bypassing `subject` in unit examples by fetching a fresh receiver or asserting on unrelated variables.
+Against the [receiver-driven contract](SKILL.md#receiver-driven-unit-tests), detect:
 
-## Adapter tests
+- result-valued, request-valued, or side-effectful `subject` blocks;
+- free-form method `describe` strings or source-order drift;
+- examples missing an explicit call to the described method on `subject`;
+- method execution hidden in `before` or assertions made through another receiver;
+- `let(:klass)` indirection where the production constant is the receiver.
 
-- `subject { get path }`, `subject { post path }`, or any HTTP/request work in `subject`.
-- Any `subject` in controller or integration tests.
+## Adapter scan
 
-## Setup shape
+Against the [adapter contract](SKILL.md#adapter-tests-exercise-http-behavior), detect `subject`, requests outside `it`, or example names that promise a response or redirect more specific than the assertion.
 
-- Broad top-level `before`, `let`, or `subject` that only some examples use.
-- Setup code in `it` blocks that belongs in a scoped `before` under a `given`.
-- Repeating the same `let` or `before` in sibling `given` blocks instead of nesting the shared condition.
-- Nested `given "with ..."`; write only the variation, such as `given "an explicit time zone String"`.
-- `context "when ..."`; use `given "..." do`.
-- Single-line `before { ... }` or `after { ... }`; use `do`/`end`.
-- Declaring `let` or `subject` before `before`/`after` in the same block.
+## Scope scan
 
-## Assertions and language
+Against [surface what varies](SKILL.md#setup-surfaces-what-varies), detect:
 
-- Raw `assert_*` / `refute_*` where expectation matchers exist.
-- `expect(-> { code }).must_*`; use `expect { code }.must_*`.
-- Vague examples like `it "works"`, `it "succeeds"`, or `it "equals something"`.
-- Abbreviations such as `desc`, `msg`, `err`, `val`, `subj`, or `ctx` unless explicitly allowed by the project.
-- Junk meta-comments such as “exercise the method under test” or “call on subject inside the it”.
+- top-level or parent setup used by only a subset of examples;
+- repeated sibling wiring instead of one shared shell with varying inputs;
+- setup in `it` that belongs to a scoped condition;
+- setup declared out of order or with the wrong block form;
+- `context`, nested `given "with ..."`, or hidden variations.
 
-## Seams and doubles
+## Oracle scan
 
-- Stubbing or mocking methods on the object under test when real inputs or injected collaborators can prove the behavior.
-- Reaching for `mock`, `stubs`, or `expects` before trying real data, plain Ruby test doubles, or a small dependency-injection seam.
+Against the [independent-oracle contract](SKILL.md#assertions-use-independent-oracles), detect the same path helper, enum source, parser, formatter, calculator, or collaborator expression in production and expected-value derivation. Also detect vague example names and raw assertions where the configured expectation API has a matcher.
+
+## Seam scan
+
+Load [`DOUBLES.md`](DOUBLES.md), then detect receiver stubbing, `any_instance`, class/global stubbing, or predeclared interactions where a real input or injected plain Ruby double would be clearer. For recording doubles, verify only meaningful command protocol rather than incidental call sequence.
+
+## Ownership and data scan
+
+Against the [test-data contract](SKILL.md#test-data-is-deliberately-synthetic) and nested-child template, detect:
+
+- nested production children split from their parent without established independent ownership;
+- fabricated records where a suitable fixture already expresses the scenario;
+- invented values carrying irrelevant narrative meaning, invalid domain formats, or excessive numeric noise.
+
+Completion criterion: every applicable scan covers every changed example, setup block, expected value, and test double; every detected trap is repaired or explicitly justified.

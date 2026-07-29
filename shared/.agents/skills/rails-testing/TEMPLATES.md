@@ -7,47 +7,34 @@ Load this when creating a new test file, restructuring a test, or needing a copy
 ```ruby
 class ModelNameTest < ActiveSupport::TestCase
   describe ".class_method_name" do
-    let(:argument) { "input" }
-    let(:default_value) { "default output" }
+    let(:argument) { "TEST" }
 
     subject { ModelName }
 
-    it "returns the default value" do
+    it "returns the expected String" do
       result = subject.class_method_name(argument)
-      expect(result).must_equal(default_value)
+      expect(result).must_equal("EXPECTED")
     end
 
     given "an explicit option" do
-      before do
-        prepare_precondition
-      end
+      let(:option) { "OPTION" }
 
-      after do
-        cleanup_precondition
-      end
-
-      let(:option) { "variation" }
-      let(:option_value) { "variation output" }
-
-      it "returns the option-specific value" do
+      it "returns the option-specific String" do
         result = subject.class_method_name(argument, option:)
-        expect(result).must_equal(option_value)
+        expect(result).must_equal("OPTION EXPECTED")
       end
     end
   end
 
   describe "#instance_method_name" do
-    let(:dependency) { Dependency.new }
-    let(:instance_value) { "instance output" }
-
-    subject { ModelName.new(dependency:) }
+    subject { ModelName.new }
 
     given "a meaningful precondition" do
-      let(:argument) { "input" }
+      let(:argument) { "TEST" }
 
-      it "returns the instance value" do
+      it "returns the expected String" do
         result = subject.instance_method_name(argument)
-        expect(result).must_equal(instance_value)
+        expect(result).must_equal("EXPECTED")
       end
     end
   end
@@ -56,50 +43,57 @@ end
 
 ## Nested `given` Template
 
-When sibling conditions share setup, hoist the shared setup into a parent `given` and branch inward.
+When sibling conditions share setup, surface what varies: hoist the shared shell into a parent `given` and redefine only the changing input.
 
 ```ruby
-describe ".parse" do
-  subject { DateParser }
+describe ".label" do
+  subject { AccessLevel }
 
-  given "a timestamp String" do
-    let(:timestamp) { "20250831123456" }
+  given "a USER role" do
+    let(:role) { "USER" }
 
-    given "in the default time zone" do
-      it "returns a Time in the default zone" do
-        result = subject.parse(timestamp)
-        expect(result).must_equal(Time.zone.parse(timestamp))
+    given "enabled" do
+      let(:enabled) { true }
+
+      it "returns the enabled label" do
+        result = subject.label(role, enabled:)
+        expect(result).must_equal("ENABLED USER")
       end
     end
 
-    given "an explicit time zone String" do
-      let(:time_zone) { "Central Time (US & Canada)" }
+    given "disabled" do
+      let(:enabled) { false }
 
-      it "returns a Time translated into the default zone" do
-        result = subject.parse(timestamp, time_zone:)
-        expect(result).must_equal(
-          Time.find_zone(time_zone).parse(timestamp).in_time_zone,
-        )
+      it "returns the disabled label" do
+        result = subject.label(role, enabled:)
+        expect(result).must_equal("DISABLED USER")
       end
     end
   end
 end
 ```
 
-## Dependency Injection Example
+## Nested Production Child Template
 
-Prefer injected plain Ruby collaborators over stubbing the subject.
+Keep a lexically owned production child in its parent's test file unless the repository already gives it independent ownership. Place it after the parent's method describes.
 
 ```ruby
-describe "#total" do
-  given "the calculator returns no result" do
-    let(:calculator) { ->(*) {} }
+class Application::PagerTest < ActiveSupport::TestCase
+  describe ".turbo_target" do
+    subject { Application::Pager }
 
-    subject { OrderSummary.new(calculator:) }
+    it "returns the pager frame identifier" do
+      expect(subject.turbo_target).must_equal("pager")
+    end
+  end
 
-    it "returns zero" do
-      result = subject.total
-      expect(result).must_equal(0)
+  describe "Null" do
+    subject { Application::Pager::Null.new }
+
+    describe "#empty?" do
+      it "returns true" do
+        expect(subject.empty?).must_equal(true)
+      end
     end
   end
 end
@@ -128,7 +122,7 @@ class HomeIntegrationTest < ActionDispatch::IntegrationTest
     given "user is not logged in" do
       it "redirects to the login path" do
         get root_path
-        must_respond_with(:redirect)
+        must_redirect_to(login_path)
       end
     end
   end

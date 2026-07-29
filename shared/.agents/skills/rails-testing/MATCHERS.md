@@ -2,10 +2,8 @@
 
 Load this when choosing assertion, response, or job matcher names.
 
-Use expectation-style assertions through `ActiveSupport::TestCase` + minitest/spec:
-
 - `expect(value).must_equal(42)` / `.wont_equal(43)`
-- `expect(object).must_be(:active?)` / `.wont_be(:inactive?)`
+- Described predicates stay explicit: `expect(subject.active?).must_equal(true)` / `expect(subject.inactive?).must_equal(false)`
 - `expect(object).must_be_nil` / `.wont_be_nil`
 - `expect(array).must_include(2)` / `.wont_include(4)`
 - `expect(value).must_be_instance_of(String)` / `.must_be_kind_of(Numeric)`
