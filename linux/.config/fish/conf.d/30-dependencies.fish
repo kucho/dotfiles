@@ -5,4 +5,6 @@ if not set -q SSH_CONNECTION
     set -gx SSH_AUTH_SOCK ~/.1password/agent.sock
 end
 
-alias zed zeditor
+if not command -q zed; and command -q zeditor
+    alias zed zeditor
+end
