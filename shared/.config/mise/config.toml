@@ -5,7 +5,6 @@ FNOX_AGE_KEY_FILE = "~/.ssh/Personal SSH Key"
 idiomatic_version_file_enable_tools = ["ruby"]
 minimum_release_age = "7d"
 minimum_release_age_excludes = ["pi"]
-ruby = { compile = true }
 status = { missing_tools = "always" }
 
 [tools]
