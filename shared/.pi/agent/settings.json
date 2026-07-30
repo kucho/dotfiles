@@ -16,5 +16,6 @@
   "terminal": {
     "showTerminalProgress": true
   },
-  "theme": "light/dark"
+  "theme": "light/dark",
+  "showCacheMissNotices": true
 }
