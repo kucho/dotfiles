@@ -4,9 +4,9 @@
 	"amp.git.commit.coauthor.enabled": false,
 	"amp.updates.mode": "auto",
 	"amp.mcpServers": {
-		"appsignal": {
-			"url": "https://appsignal.com/api/mcp",
-			"headers": { "Authorization": "Bearer ${APPSIGNAL_MCP_TOKEN}" }
-		}
-	}
+    "appsignal": {
+      "url": "https://appsignal.com/api/mcp"
+    }
+  },
+  "amp.gauge": "cost"
 }
