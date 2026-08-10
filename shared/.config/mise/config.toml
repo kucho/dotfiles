@@ -35,3 +35,4 @@ zoxide = "latest"
 # Node.js
 "npm:@herb-tools/language-server" = "latest"
 "npm:agent-browser" = "latest"
+"aqua:aws/session-manager-plugin" = "latest"
