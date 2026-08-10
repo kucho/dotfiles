@@ -35,4 +35,13 @@ zoxide = "latest"
 # Node.js
 "npm:@herb-tools/language-server" = "latest"
 "npm:agent-browser" = "latest"
-"aqua:aws/session-manager-plugin" = "latest"
+# AWS only publishes a macOS zip to aqua; Linux gets a .deb. Use http + postinstall for both.
+[tools."http:session-manager-plugin"]
+version = "1.2.835.0"
+postinstall = "bash ~/.config/mise/scripts/session-manager-plugin-postinstall.sh"
+
+[tools."http:session-manager-plugin".platforms]
+linux-x64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ version }}/ubuntu_64bit/session-manager-plugin.deb" }
+linux-arm64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ version }}/ubuntu_arm64/session-manager-plugin.deb" }
+macos-x64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ version }}/mac/sessionmanager-bundle.zip" }
+macos-arm64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ version }}/mac_arm64/sessionmanager-bundle.zip" }
