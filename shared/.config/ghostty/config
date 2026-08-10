@@ -19,3 +19,6 @@ window-inherit-working-directory = true
 window-padding-balance = true
 window-padding-color=extend
 window-width = 120
+
+# Optional platform overrides from linux/, osx/, wsl2/, etc. via stow
+config-file = ?override
