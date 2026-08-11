@@ -1,8 +1,9 @@
 git:
-  pagers:
-    - pager: delta --paging=never --true-color=always --diff-so-fancy --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    - externalDiffCommand: difft --color=always --display=inline --syntax-highlight=off
+  diffRenderers:
+    - command: delta --paging=never --true-color=always --diff-so-fancy --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - command: difft --color=always --display=inline --syntax-highlight=off
       colorArg: always
+      type: extDiff
   overrideGpg: true
 os:
   editPreset: zed
