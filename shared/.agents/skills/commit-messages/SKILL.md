@@ -40,7 +40,7 @@ git diff
 git diff --cached
 ```
 
-Extract message facts only from the diff, test output, logs, command output, existing code, issue text, git history, or user-provided context. Include relevant evidence already established earlier in the work; do not narrow the message back to the diff alone.
+Extract message facts only from the diff, test output, logs, command output, existing code, issue text, git history, or user-provided context. Include relevant evidence already established earlier in the work; do not narrow the message back to the diff alone. Do not paste the investigation notebook into the body (measurements, hit-testing, pixel geometry).
 
 Completion criterion: the intended diff, unrelated worktree changes, and evidence already available for the message are known. Bug-fix claims are not ready until step 3's evidence criterion passes.
 
@@ -61,7 +61,7 @@ Pick the proof this commit needs. If several apply, use the riskiest or most rev
 - **Mechanical/generated**: tool or process, semantic boundary, validation.
 - **Upgrade/migration/rollout**: old/new state, ordering, compatibility, deploy or cleanup constraints.
 
-For every bug fix, require the available evidence to support this **failure chain** before stating it in the message:
+For every bug fix, require the available evidence to support this **failure chain** before you claim a cause. The chain is a writing-time check so you do not invent a cause. It is not a body outline — do not walk it in the message. You may only print a link you can evidence; you are not required to print every evidenced link.
 
 `trigger → failing operation and symptom → producer of the bad value or state → why it produces that value or state → changed boundary → regression evidence`
 
@@ -73,7 +73,7 @@ Retain already-established issue, review, and git-history facts when they explai
 
 For risky or non-obvious non-bug commits, load [`PROOF_BRANCHES.md`](PROOF_BRANCHES.md) and apply the selected branch's checklist.
 
-Completion criterion: the primary proof branch is clear and every safety claim is calibrated to available evidence. Every bug-fix causal claim maps to evidence already present in the diff, test output, logs, source excerpts, issue/history context, or user-provided context. Unsupported links are removed from the message or reported as missing evidence; relevant already-known history is retained.
+Completion criterion: the primary proof branch is clear and every safety claim is calibrated to available evidence. Every causal claim you print maps to evidence already present in the diff, test output, logs, source excerpts, issue/history context, or user-provided context. You are not required to print every evidenced link. Unsupported printed links are removed from the message or reported as missing evidence; relevant already-known history is retained.
 
 ### 4. Write or Commit
 
@@ -92,6 +92,7 @@ Body contract (single write shape):
 - Final paragraph: evidence, verification, rollout, migration, or compatibility details when they affect confidence.
 - Use connected prose. Use bullets only for related evidence; a bullet per file or independent change means split the commit.
 - Omit the body only when the title carries the full proof for a low-risk obvious change.
+- For a user-visible bug, keep a noun if a reviewer with the diff still needs it to accept this boundary rather than a neighbor. Drop it if it only restates a hunk. Keep: the toast overlay is shared, so click-through belongs on the toast, not this form. Drop: `z-index: 999999`. Keep: pin `format: :html` because `update` prefers turbo_stream and that template replaces `#details-form`, which only exists on Details. Drop: restating the `url:` argument.
 
 Series write shape: do not use the single body contract alone. Apply [`SERIES.md`](SERIES.md) for the series banner, residual body, and cold-landing test; then approach and evidence as above.
 
@@ -102,7 +103,7 @@ Every residual and approach sentence must be **grounded**:
 - Prefer what the old code *did* over abstract migration talk ("re-resolve the package", "load path ownership").
 - Facts only from step 1. If a claim is not in the diff, tests, logs, or user text, drop it.
 
-Before finishing, re-read each body as a cold reviewer with only that commit: any sentence that needs a sibling commit, unstated jargon, or a policy you just coined fails — rewrite it.
+Before finishing, re-read each body as a cold reviewer with only that commit: any sentence that needs a sibling commit, unstated jargon, or a policy you just coined fails — rewrite it. For a user-visible bug, also apply the keep/drop test above.
 
 ```bash
 git commit -m "title" -m "body paragraph"
@@ -113,7 +114,7 @@ For message-only requests, output the title and body without committing.
 Completion criterion:
 
 - Title follows the title contract; no unknown context invented.
-- Bug fixes satisfy step 3's failure-chain criterion before any message or commit is finalized.
+- Bug fixes satisfy step 3's evidence gate (possessed chain, printed claims evidenced). Do not outline the chain in the body.
 - Every residual/approach sentence is grounded (project nouns; no invented policy or category jargon).
 - Cold re-read of each body passes without sibling commits or unstated terms.
 - **Single**: body follows the single body contract or is intentionally omitted.
@@ -121,4 +122,4 @@ Completion criterion:
 
 ## Calibration
 
-Separate observed behavior from risk: observed is what was measured, reproduced, searched, or tested; risk is what the old code could cause. Mention verification in prose when it affects confidence; do not add a boilerplate test footer unless that is clearer.
+Separate observed behavior from risk: observed is what was measured, reproduced, searched, or tested; risk is what the old code could cause. When verification affects confidence, write the reproduction a reviewer can recognize (what you did and what then worked), not the instrumentation that produced the proof. Do not add a boilerplate test footer unless that is clearer.
