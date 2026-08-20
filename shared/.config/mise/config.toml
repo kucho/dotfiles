@@ -7,6 +7,24 @@ minimum_release_age = "7d"
 minimum_release_age_excludes = ["pi"]
 status = { missing_tools = "always" }
 
+[bootstrap.macos.launchd.agents.elasticsearch]
+program = "~/.local/share/mise/installs/elasticsearch/7/bin/elasticsearch"
+run_at_load = true
+keep_alive = true
+working_directory = "~/.local/share/mise/installs/elasticsearch/7"
+stdout_path = "~/Library/Logs/elasticsearch.log"
+stderr_path = "~/Library/Logs/elasticsearch.err.log"
+
+[bootstrap.linux.systemd.units.elasticsearch]
+description = "Elasticsearch"
+exec_start = "~/.local/share/mise/installs/elasticsearch/7/bin/elasticsearch"
+working_directory = "~/.local/share/mise/installs/elasticsearch/7"
+restart = "always"
+restart_sec = "5s"
+timeout_start_sec = "120"
+standard_output = "journal"
+standard_error = "journal"
+
 [tools]
 age = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
