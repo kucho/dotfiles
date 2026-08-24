@@ -23,4 +23,5 @@ exec "$mysqld" \
   --basedir="$basedir" \
   --datadir="$datadir" \
   --bind-address=127.0.0.1 \
-  --socket="$socket"
+  --socket="$socket" \
+  --skip-log-bin
