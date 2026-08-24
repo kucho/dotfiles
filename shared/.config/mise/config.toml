@@ -25,6 +25,24 @@ timeout_start_sec = "120"
 standard_output = "journal"
 standard_error = "journal"
 
+[bootstrap.macos.launchd.agents.mysql]
+program = "~/.config/mise/scripts/mysql-server.sh"
+run_at_load = true
+keep_alive = true
+working_directory = "~/.local/share/mysql"
+stdout_path = "~/Library/Logs/mysql.log"
+stderr_path = "~/Library/Logs/mysql.err.log"
+
+[bootstrap.linux.systemd.units.mysql]
+description = "MySQL"
+exec_start = "~/.config/mise/scripts/mysql-server.sh"
+working_directory = "~/.local/share/mysql"
+restart = "always"
+restart_sec = "5s"
+timeout_start_sec = "120"
+standard_output = "journal"
+standard_error = "journal"
+
 [tools]
 age = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
@@ -42,6 +60,7 @@ go = "latest"
 lazydocker = "latest"
 lazygit = "latest"
 lsd = "latest"
+mysql = { version = "8", postinstall = "bash ~/.config/mise/scripts/mysql-postinstall.sh" }
 node = "lts"
 pi = "latest"
 ruby = { version = "latest", depends = ["rust"] }
