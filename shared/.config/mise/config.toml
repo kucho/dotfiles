@@ -2,6 +2,7 @@
 FNOX_AGE_KEY_FILE = "~/.ssh/Personal SSH Key"
 
 [settings]
+auto_update = true
 idiomatic_version_file_enable_tools = ["ruby"]
 minimum_release_age = "7d"
 minimum_release_age_excludes = ["pi"]
