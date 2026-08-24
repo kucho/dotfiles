@@ -75,7 +75,10 @@ zoxide = "latest"
 "npm:agent-browser" = "latest"
 # AWS only publishes a macOS zip to aqua; Linux gets a .deb. Use http + postinstall for both.
 [tools."http:session-manager-plugin"]
-version = "1.2.835.0"
+version = "latest"
+version_list_url = "https://api.github.com/repos/aws/session-manager-plugin/releases"
+version_json_path = ".[].tag_name"
+version_expr = "reverse(versions)"
 postinstall = "bash ~/.config/mise/scripts/session-manager-plugin-postinstall.sh"
 
 [tools."http:session-manager-plugin".platforms]
