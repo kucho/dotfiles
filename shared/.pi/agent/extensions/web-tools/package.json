@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "check": "npm run typecheck && npm run test",
+    "postinstall": "node scripts/link-stowed-node-modules.mjs",
     "test": "node --import tsx --test test/**/*.test.ts",
     "typecheck": "tsc --noEmit"
   },

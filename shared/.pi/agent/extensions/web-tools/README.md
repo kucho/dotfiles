@@ -98,6 +98,8 @@ To change the defaults, edit:
 
 ## Source of truth
 
+Files are GNU-stowed into `~/.pi` with `--no-folding`, so Node/Bun resolve npm packages from the real files under `shared/`. Run `npm install` in this directory (either path); `postinstall` links `node_modules` next to the real sources when they differ.
+
 - extension entry: `shared/.pi/agent/extensions/web-tools/index.ts`
 - settings/defaults: `shared/.pi/agent/extensions/web-tools/settings.ts`
 - fetch Pi adapter: `shared/.pi/agent/extensions/web-tools/webfetch.ts`
