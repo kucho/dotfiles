@@ -24,4 +24,5 @@ exec "$mysqld" \
   --datadir="$datadir" \
   --bind-address=127.0.0.1 \
   --socket="$socket" \
-  --skip-log-bin
+  --skip-log-bin \
+  --innodb-buffer-pool-size=4G
