@@ -1,0 +1,33 @@
+# Loi Paper Dark
+# https://github.com/aliaksei-loi/zed-loi-paper-theme
+background = #262624
+foreground = #f0eee6
+selection-background = #5c3e33
+selection-foreground = #f0eee6
+cursor-color = #d97757
+cursor-text = #262624
+
+# black
+palette = 0=#1f1e1c
+palette = 8=#54524d
+# red
+palette = 1=#e07070
+palette = 9=#ec8a8a
+# green
+palette = 2=#8faf7e
+palette = 10=#a5c397
+# yellow
+palette = 3=#dfa86c
+palette = 11=#ebbc84
+# blue
+palette = 4=#7aa5c9
+palette = 12=#94bcd9
+# magenta
+palette = 5=#c794b5
+palette = 13=#d5acc3
+# cyan
+palette = 6=#80b3b3
+palette = 14=#9bc6c6
+# white
+palette = 7=#f0eee6
+palette = 15=#ffffff
