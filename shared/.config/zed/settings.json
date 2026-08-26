@@ -1,5 +1,4 @@
 {
-	"cli_default_open_behavior": "existing_window",
 	"agent": {
 		"sidebar_side": "right",
 		"enabled": false,
@@ -27,6 +26,7 @@
 	"buffer_font_family": "Berkeley Mono",
 	"buffer_font_size": 19,
 	"buffer_line_height": "comfortable",
+	"cli_default_open_behavior": "existing_window",
 	"code_actions_on_format": {
 		"source.action.useSortedKeys.biome": true,
 		"source.fixAll": true,
@@ -51,12 +51,15 @@
 	},
 	"git_panel": {
 		"tree_view": true,
-  "dock": "left"
+		"dock": "left"
 	},
 	"icon_theme": {
-		"mode": "system",
+		"mode": "light",
 		"light": "Catppuccin Latte",
 		"dark": "Catppuccin Mocha"
+	},
+	"indent_guides": {
+		"coloring": "indent_aware"
 	},
 	"languages": {
 		"CSS": {
@@ -172,6 +175,7 @@
 		"auto_fold_dirs": true,
 		"dock": "right"
 	},
+	"semantic_tokens": "combined",
 	"sticky_scroll": {
 		"enabled": true
 	},
@@ -193,8 +197,8 @@
 		"line_height": "standard"
 	},
 	"theme": {
-		"dark": "Github Plus Dark",
-		"light": "Gruvbox Light Hard",
+		"dark": "Loi Paper Dark",
+		"light": "Loi Paper Light",
 		"mode": "system"
 	},
 	"ui_font_family": "SF Pro Text",
