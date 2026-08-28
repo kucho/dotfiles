@@ -16,3 +16,6 @@ recipients = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8svbpnhW1fbLEKhF/9ckmLS0yE1
 [secrets]
 FRESHDESK_API_KEY = { provider = "onepass" , value = "FRESHDESK_API_KEY" }
 KAGI_API_KEY = { provider = "onepass", value = "KAGI_API_KEY/credential" }
+CLOUDFLARE_ACCOUNT_ID = { provider = "onepass", value = "CLOUDFLARE_ACCOUNT_ID/credential" }
+CLOUDFLARE_API_KEY = { provider = "onepass", value = "CLOUDFLARE_API_KEY/credential" }
+CLOUDFLARE_GATEWAY_ID = { provider = "onepass", value = "CLOUDFLARE_GATEWAY_ID/credential" }
