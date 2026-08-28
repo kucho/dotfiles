@@ -1,7 +1,7 @@
 {
   "collapseChangelog": true,
-  "defaultModel": "grok-4.6",
-  "defaultProvider": "xai",
+  "defaultModel": "workers-ai/@cf/zai-org/glm-5.3-flash",
+  "defaultProvider": "cloudflare-ai-gateway",
   "defaultThinkingLevel": "high",
   "lastChangelogVersion": "0.84.3",
   "packages": [
@@ -17,5 +17,6 @@
     "showTerminalProgress": true
   },
   "theme": "light/dark",
-  "showCacheMissNotices": true
+  "showCacheMissNotices": true,
+  "tuiMode": "fullscreen"
 }
