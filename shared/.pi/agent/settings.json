@@ -1,7 +1,7 @@
 {
   "collapseChangelog": true,
-  "defaultModel": "workers-ai/@cf/zai-org/glm-5.3-flash",
-  "defaultProvider": "cloudflare-ai-gateway",
+  "defaultModel": "grok-4.6",
+  "defaultProvider": "xai",
   "defaultThinkingLevel": "high",
   "lastChangelogVersion": "0.84.4",
   "packages": [
