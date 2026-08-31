@@ -3,7 +3,7 @@
   "defaultModel": "workers-ai/@cf/zai-org/glm-5.3-flash",
   "defaultProvider": "cloudflare-ai-gateway",
   "defaultThinkingLevel": "high",
-  "lastChangelogVersion": "0.84.3",
+  "lastChangelogVersion": "0.84.4",
   "packages": [
     "npm:@plannotator/pi-extension",
     "npm:glimpseui",
