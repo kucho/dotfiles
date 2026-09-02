@@ -14,6 +14,7 @@ type = "age"
 recipients = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO8svbpnhW1fbLEKhF/9ckmLS0yE1s4GdWt+SlsYb1pe"]
 
 [secrets]
+APP_SIGNAL_MCP_TOKEN = { provider = "onepass", value = "APP_SIGNAL_MCP_TOKEN/credential" }
 FRESHDESK_API_KEY = { provider = "onepass" , value = "FRESHDESK_API_KEY" }
 KAGI_API_KEY = { provider = "onepass", value = "KAGI_API_KEY/credential" }
 CLOUDFLARE_ACCOUNT_ID = { provider = "onepass", value = "CLOUDFLARE_ACCOUNT_ID/credential" }
