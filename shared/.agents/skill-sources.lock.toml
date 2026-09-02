@@ -9,14 +9,6 @@ resolved = "eb05921bad874cd2a1b4fa5d1149f1ed26576cae"
 
 
 [[skills]]
-name = "github"
-repo = "https://github.com/mitsuhiko/agent-stuff.git"
-path = "skills/github"
-ref = "main"
-resolved = "3c891a9640f80c271ccc666ab7a39f9811bc3fb6"
-
-
-[[skills]]
 name = "domain-modeling"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/domain-modeling"

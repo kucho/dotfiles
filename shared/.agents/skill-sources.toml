@@ -9,14 +9,6 @@ ref = "main"
 
 
 [[skills]]
-name = "github"
-source = "https://github.com/mitsuhiko/agent-stuff/tree/main/skills/github"
-repo = "https://github.com/mitsuhiko/agent-stuff.git"
-path = "skills/github"
-ref = "main"
-
-
-[[skills]]
 name = "domain-modeling"
 source = "https://github.com/mattpocock/skills/tree/main/skills/engineering/domain-modeling"
 repo = "https://github.com/mattpocock/skills.git"

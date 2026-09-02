@@ -4,7 +4,6 @@ node_modules
 
 # agent-skills managed vendored skills
 /shared/.agents/skills/agent-browser/
-/shared/.agents/skills/github/
 /shared/.agents/skills/domain-modeling/
 /shared/.agents/skills/grilling/
 /shared/.agents/skills/grill-me/
