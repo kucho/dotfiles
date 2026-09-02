@@ -57,14 +57,6 @@ ref = "main"
 
 
 [[skills]]
-name = "writing-great-skills"
-source = "https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-great-skills"
-repo = "https://github.com/mattpocock/skills.git"
-path = "skills/productivity/writing-great-skills"
-ref = "main"
-
-
-[[skills]]
 name = "grill-with-docs"
 source = "https://github.com/mattpocock/skills/blob/main/skills/engineering/grill-with-docs"
 repo = "https://github.com/mattpocock/skills.git"
@@ -77,5 +69,13 @@ name = "improve-codebase-architecture"
 source = "https://github.com/mattpocock/skills/blob/main/skills/engineering/improve-codebase-architecture"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/improve-codebase-architecture"
+ref = "main"
+
+
+[[skills]]
+name = "writing-for-agents"
+source = "https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-for-agents"
+repo = "https://github.com/mattpocock/skills.git"
+path = "skills/productivity/writing-for-agents"
 ref = "main"
 

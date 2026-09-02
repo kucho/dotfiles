@@ -10,6 +10,6 @@ node_modules
 /shared/.agents/skills/grill-me/
 /shared/.agents/skills/handoff/
 /shared/.agents/skills/teach/
-/shared/.agents/skills/writing-great-skills/
 /shared/.agents/skills/grill-with-docs/
 /shared/.agents/skills/improve-codebase-architecture/
+/shared/.agents/skills/writing-for-agents/
