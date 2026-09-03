@@ -10,10 +10,7 @@
 [diff]
   algorithm = histogram
   colorMoved = default
-  mnemonicPrefix = true
   renames = true
-[feature]
-  experimental = false
 [fetch]
   all = true
   prune = true
@@ -32,7 +29,6 @@
   rebase = true
 [push]
   autoSetupRemote = true
-  default = simple
   followTags = true
 [rebase]
   autoSquash = true
