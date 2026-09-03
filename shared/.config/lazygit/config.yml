@@ -1,6 +1,6 @@
 git:
   diffRenderers:
-    - command: delta --paging=never --true-color=always --diff-so-fancy --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - command: delta --paging=never --hunk-header-style=omit --true-color=always --diff-so-fancy --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     - command: difft --color=always --display=inline --syntax-highlight=off
       colorArg: always
       type: extDiff
