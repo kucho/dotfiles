@@ -1,0 +1,73 @@
+[settings]
+auto_update = true
+idiomatic_version_file_enable_tools = ["ruby"]
+minimum_release_age = "7d"
+minimum_release_age_excludes = ["pi"]
+status = { missing_tools = "always" }
+
+[dotfiles]
+"~/.config/mise/config.toml" = { source = "mise.toml", mode = "symlink" }
+"~/.config/mise/config.macos.toml" = { source = "mise.macos.toml", mode = "symlink" }
+"~/.config/mise/config.linux.toml" = { source = "mise.linux.toml", mode = "symlink" }
+"~/.config/mise/miserc.toml" = { source = ".miserc.toml", mode = "symlink" }
+"~/.config/ghostty/override" = { source = "templates/ghostty-override.tmpl", mode = "template" }
+"~" = { source = "home", mode = "symlink-each", exclude = ["node_modules", ".DS_Store"] }
+
+[bootstrap.hooks.pre-tools]
+run = "bash ~/.config/mise/scripts/ensure-xdg-dirs.sh"
+
+[env]
+XDG_CONFIG_HOME = "{{ env.HOME }}/.config"
+XDG_CACHE_HOME = "{{ env.HOME }}/.cache"
+XDG_DATA_HOME = "{{ env.HOME }}/.local/share"
+XDG_STATE_HOME = "{{ env.HOME }}/.local/state"
+XDG_BIN_HOME = "{{ env.HOME }}/.local/bin"
+_.path = ["~/.local/bin", "~/.cargo/bin"]
+
+[tools]
+aws-cli = { version = "latest", symlink_bins = "true" }
+biome = "latest"
+codex = "latest"
+delta = "latest"
+difftastic = "latest"
+elasticsearch = "7"
+elixir = "latest"
+erlang = "latest"
+fnox = "latest"
+fzf = "latest"
+gh = "latest"
+go = "latest"
+lazydocker = "latest"
+lazygit = "latest"
+lsd = "latest"
+mysql = { version = "8", postinstall = "bash ~/.config/mise/scripts/mysql-postinstall.sh" }
+node = "lts"
+pi = "latest"
+ruby = { version = "latest", depends = ["rust"] }
+rust = { version = "latest", components = "rust-analyzer,rust-src" }
+starship = { version = "latest", postinstall = "starship preset pure-preset -o ~/.config/starship.toml" }
+usage = "latest"
+zoxide = "latest"
+
+"npm:@herb-tools/language-server" = "latest"
+"npm:agent-browser" = "latest"
+
+# AWS only publishes a macOS zip to aqua; Linux gets a .deb. Use http + postinstall for both.
+[tools."http:session-manager-plugin"]
+version = "latest"
+version_list_url = "https://api.github.com/repos/aws/session-manager-plugin/releases"
+version_json_path = ".[].tag_name"
+version_expr = "reverse(versions)"
+postinstall = "bash ~/.config/mise/scripts/session-manager-plugin-postinstall.sh"
+
+[tools."http:session-manager-plugin".platforms]
+linux-x64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ version }}/ubuntu_64bit/session-manager-plugin.deb" }
+linux-arm64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ version }}/ubuntu_arm64/session-manager-plugin.deb" }
+macos-x64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ version }}/mac/sessionmanager-bundle.zip" }
+macos-arm64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin/{{ version }}/mac_arm64/sessionmanager-bundle.zip" }
+
+[tasks.bootstrap]
+run = [
+  "mise exec -- ruby ~/.local/bin/agent-skills install",
+  "fish ~/.config/mise/scripts/install-fisher.fish",
+]

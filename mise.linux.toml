@@ -1,0 +1,34 @@
+[bootstrap.user]
+login_shell = "/usr/bin/fish"
+
+[env]
+SSH_AUTH_SOCK = """
+{%- if get_env(name="SSH_CONNECTION", default="") -%}
+{{ get_env(name="SSH_AUTH_SOCK", default="") }}
+{%- else -%}
+{{ env.HOME }}/.1password/agent.sock
+{%- endif -%}
+"""
+
+[bootstrap.packages]
+"pacman:fish" = "latest"
+
+[bootstrap.linux.systemd.units.elasticsearch]
+description = "Elasticsearch"
+exec_start = "~/.local/share/mise/installs/elasticsearch/7/bin/elasticsearch"
+working_directory = "~/.local/share/mise/installs/elasticsearch/7"
+restart = "always"
+restart_sec = "5s"
+timeout_start_sec = "120"
+standard_output = "journal"
+standard_error = "journal"
+
+[bootstrap.linux.systemd.units.mysql]
+description = "MySQL"
+exec_start = "~/.config/mise/scripts/mysql-server.sh"
+working_directory = "~/.local/share/mysql"
+restart = "always"
+restart_sec = "5s"
+timeout_start_sec = "120"
+standard_output = "journal"
+standard_error = "journal"

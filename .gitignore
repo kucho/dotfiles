@@ -1,14 +1,14 @@
 *known_hosts*
-/linux/.local/bin
+.DS_Store
 node_modules
 
 # agent-skills managed vendored skills
-/shared/.agents/skills/agent-browser/
-/shared/.agents/skills/domain-modeling/
-/shared/.agents/skills/grilling/
-/shared/.agents/skills/grill-me/
-/shared/.agents/skills/handoff/
-/shared/.agents/skills/teach/
-/shared/.agents/skills/grill-with-docs/
-/shared/.agents/skills/improve-codebase-architecture/
-/shared/.agents/skills/writing-for-agents/
+/home/.agents/skills/agent-browser/
+/home/.agents/skills/domain-modeling/
+/home/.agents/skills/grilling/
+/home/.agents/skills/grill-me/
+/home/.agents/skills/handoff/
+/home/.agents/skills/teach/
+/home/.agents/skills/grill-with-docs/
+/home/.agents/skills/improve-codebase-architecture/
+/home/.agents/skills/writing-for-agents/

@@ -1,0 +1,21 @@
+#!/bin/sh
+# Zed SSH remotes often set SSH_AUTH_SOCK but not SSH_TTY; op-ssh-sign needs both.
+
+if [ -n "$SSH_CONNECTION" ] && [ -z "$SSH_TTY" ]; then
+  export SSH_TTY=/dev/pts/0
+fi
+
+if command -v op-ssh-sign >/dev/null 2>&1; then
+  exec op-ssh-sign "$@"
+fi
+
+if [ -x /Applications/1Password.app/Contents/MacOS/op-ssh-sign ]; then
+  exec /Applications/1Password.app/Contents/MacOS/op-ssh-sign "$@"
+fi
+
+if [ -x /opt/1Password/op-ssh-sign ]; then
+  exec /opt/1Password/op-ssh-sign "$@"
+fi
+
+echo "op-ssh-sign-wrapper: op-ssh-sign not found" >&2
+exit 127

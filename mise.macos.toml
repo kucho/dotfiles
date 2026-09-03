@@ -1,0 +1,51 @@
+[bootstrap.user]
+login_shell = "/opt/homebrew/bin/fish"
+
+[bootstrap.packages]
+"brew:fish" = "latest"
+"brew:libpq" = "latest"
+"brew:libyaml" = "latest"
+"brew-cask:1password" = { adopt = true }
+"brew-cask:ghostty" = { adopt = true }
+
+[bootstrap.macos.launchd.agents.xdg]
+program = "/bin/sh"
+args = ["-c", """
+  launchctl setenv XDG_CONFIG_HOME "$HOME/.config" &&
+  launchctl setenv XDG_CACHE_HOME "$HOME/.cache" &&
+  launchctl setenv XDG_DATA_HOME "$HOME/.local/share" &&
+  launchctl setenv XDG_STATE_HOME "$HOME/.local/state" &&
+  launchctl setenv XDG_RUNTIME_DIR "$HOME/.local/run" &&
+  launchctl setenv XDG_BIN_HOME "$HOME/.local/bin"
+"""]
+run_at_load = true
+
+[bootstrap.macos.launchd.agents.elasticsearch]
+program = "~/.local/share/mise/installs/elasticsearch/7/bin/elasticsearch"
+run_at_load = true
+keep_alive = true
+working_directory = "~/.local/share/mise/installs/elasticsearch/7"
+stdout_path = "~/Library/Logs/elasticsearch.log"
+stderr_path = "~/Library/Logs/elasticsearch.err.log"
+
+[bootstrap.macos.launchd.agents.mysql]
+program = "~/.config/mise/scripts/mysql-server.sh"
+run_at_load = true
+keep_alive = true
+working_directory = "~/.local/share/mysql"
+stdout_path = "~/Library/Logs/mysql.log"
+stderr_path = "~/Library/Logs/mysql.err.log"
+
+[env]
+SSH_AUTH_SOCK = "{{ env.HOME }}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+HOMEBREW_PREFIX = "/opt/homebrew"
+HOMEBREW_CELLAR = "/opt/homebrew/Cellar"
+HOMEBREW_REPOSITORY = "/opt/homebrew"
+HOMEBREW_NO_ANALYTICS = "1"
+HOMEBREW_NO_ENV_HINTS = "1"
+XDG_RUNTIME_DIR = "{{ env.HOME }}/.local/run"
+_.path = { path = [
+  "/opt/homebrew/bin",
+  "/opt/homebrew/sbin",
+  "/opt/homebrew/opt/libpq/bin",
+], tools = true }
