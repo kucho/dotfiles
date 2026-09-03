@@ -1,0 +1,33 @@
+[cli]
+installer = "internal"
+
+[marketplace]
+default_skills_installs_purged = true
+official_marketplace_auto_installed = true
+
+[[marketplace.sources]]
+git = "https://github.com/xai-org/plugin-marketplace.git"
+name = "xAI Official"
+
+[mcp_servers.appsignal]
+enabled = true
+url = "https://appsignal.com/api/mcp"
+
+[mcp_servers.appsignal.headers]
+Authorization = "Bearer ${APP_SIGNAL_MCP_TOKEN}"
+
+[models]
+default = "grok-4.6"
+
+[privacy]
+privacy_banner_acked = "2026-08-12T22:08:13Z"
+
+[ui]
+combine_queued_prompts = true
+compact_mode = true
+follow_up_behavior = "steer"
+max_thoughts_width = 120
+page_flip_on_send = false
+permission_mode = "always-approve"
+show_timeline = false
+theme = "auto"
