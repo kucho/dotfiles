@@ -13,10 +13,14 @@ status = { missing_tools = "always" }
 "~/.config/ghostty/override" = { source = "templates/ghostty-override.tmpl", mode = "template" }
 "~" = { source = "home", mode = "symlink-each", exclude = ["node_modules", ".DS_Store"] }
 
+[bootstrap.hooks.pre-dotfiles]
+run = 'mise exec -- bash -c "bash \$AGENT_SKILLS_DOTFILES/home/.config/mise/scripts/install-agent-skills.sh"'
+
 [bootstrap.hooks.pre-tools]
 run = "bash ~/.config/mise/scripts/ensure-xdg-dirs.sh"
 
 [env]
+AGENT_SKILLS_DOTFILES = "{{ config_source | canonicalize | dirname }}"
 XDG_CONFIG_HOME = "{{ env.HOME }}/.config"
 XDG_CACHE_HOME = "{{ env.HOME }}/.cache"
 XDG_DATA_HOME = "{{ env.HOME }}/.local/share"
@@ -68,6 +72,5 @@ macos-arm64 = { url = "https://s3.amazonaws.com/session-manager-downloads/plugin
 
 [tasks.bootstrap]
 run = [
-  "mise exec -- ruby ~/.local/bin/agent-skills install",
   "fish ~/.config/mise/scripts/install-fisher.fish",
 ]

@@ -115,7 +115,7 @@ Follow these patterns instead of creating another way to handle the same problem
 - **Ghostty:** the shared config loads an optional `override`; mise renders it from `templates/ghostty-override.tmpl`.
 - **SSH:** `Match exec` uses OpenSSH's own conditional rules for OS differences. Commands there run under fish, so use `$HOME` rather than `${HOME}`.
 - **Services:** launchd and systemd settings stay in their OS files, while both call shared scripts for common behavior.
-- **Skills:** edit first-party skill sources directly; update vendored skills through the manifest/lock workflow rather than patching installed directories.
+- **Skills:** edit first-party skill sources directly; update vendored skills through the manifest/lock workflow rather than patching installed directories. `pre-dotfiles` installs vendored skills into `home/` so the single symlink-each pass links them.
 
 ## Agent workflow
 
