@@ -6,6 +6,14 @@ default_skills_installs_purged = true
 official_marketplace_auto_installed = true
 
 [[marketplace.sources]]
+git = "https://github.com/ombulabs/claude-skills.git"
+name = "claude-skills"
+
+[[marketplace.sources]]
+git = "https://github.com/backnotprop/plannotator.git"
+name = "plannotator"
+
+[[marketplace.sources]]
 git = "https://github.com/xai-org/plugin-marketplace.git"
 name = "xAI Official"
 
@@ -19,6 +27,14 @@ Authorization = "Bearer ${APP_SIGNAL_MCP_TOKEN}"
 [models]
 default = "grok-4.6"
 
+[plugins]
+enabled = [
+    "plannotator",
+    "rails-load-defaults",
+    "rails-upgrade",
+    "upgrade-cleanup",
+]
+
 [privacy]
 privacy_banner_acked = "2026-08-12T22:08:13Z"
 
@@ -26,6 +42,7 @@ privacy_banner_acked = "2026-08-12T22:08:13Z"
 combine_queued_prompts = true
 compact_mode = true
 follow_up_behavior = "steer"
+fork_secondary_model = "grok-4.6"
 max_thoughts_width = 120
 page_flip_on_send = false
 permission_mode = "always-approve"
