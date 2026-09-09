@@ -1,7 +1,7 @@
 [settings]
 auto_update = true
 idiomatic_version_file_enable_tools = ["ruby"]
-minimum_release_age = "7d"
+minimum_release_age = "3d"
 minimum_release_age_excludes = ["pi"]
 status = { missing_tools = "always" }
 
