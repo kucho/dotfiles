@@ -9,6 +9,9 @@ SSH_AUTH_SOCK = """
 {{ env.HOME }}/.1password/agent.sock
 {%- endif -%}
 """
+# Grok's Wayland data-control copy reports success but does not stick on KDE;
+# force wl-copy so drag-select reaches the clipboard.
+GROK_CLIPBOARD_NO_DATA_CONTROL = "1"
 
 [bootstrap.packages]
 "pacman:fish" = "latest"
