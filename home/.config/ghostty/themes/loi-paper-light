@@ -1,5 +1,6 @@
 # Loi Paper Light
 # https://github.com/aliaksei-loi/zed-loi-paper-theme
+#
 background = #faf9f5
 foreground = #1f1e1b
 selection-background = #ebccbf
@@ -12,22 +13,22 @@ palette = 0=#1f1e1b
 palette = 8=#6b6862
 # red
 palette = 1=#c44545
-palette = 9=#d35858
+palette = 9=#a83838
 # green
 palette = 2=#5a7a4f
-palette = 10=#6e9061
+palette = 10=#48623e
 # yellow
-palette = 3=#b5722c
-palette = 11=#c98a3e
+palette = 3=#915a22
+palette = 11=#915a22
 # blue
 palette = 4=#4a6b85
-palette = 12=#5e7f99
+palette = 12=#3a566b
 # magenta
 palette = 5=#8b4f70
-palette = 13=#a26385
+palette = 13=#6e3e58
 # cyan
 palette = 6=#4f7a7a
-palette = 14=#629191
+palette = 14=#3e6262
 # white
-palette = 7=#e8e6dc
-palette = 15=#ffffff
+palette = 7=#4a4844
+palette = 15=#1f1e1b
