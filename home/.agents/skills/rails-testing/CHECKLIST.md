@@ -7,14 +7,14 @@ Load this for non-trivial test edits or reviews. Scan every changed example, tou
 Against the [receiver-driven contract](SKILL.md#receiver-driven-unit-tests), detect:
 
 - result-valued, request-valued, or side-effectful `subject` blocks;
-- free-form method `describe` strings or source-order drift;
+- free-form method `describe` strings, private-method `describe`s, or source-order drift;
 - examples missing an explicit call to the described method on `subject`;
 - method execution hidden in `before` or assertions made through another receiver;
 - `let(:klass)` indirection where the production constant is the receiver.
 
 ## Adapter scan
 
-Against the [adapter contract](SKILL.md#adapter-tests-exercise-http-behavior), detect `subject`, requests outside `it`, or example names that promise a response or redirect more specific than the assertion.
+Against the [adapter contract](SKILL.md#adapter-tests-exercise-http-behavior), detect `subject`, requests outside `it`, `assigns` or other internals as the observation, or example names that promise a response or redirect more specific than the assertion.
 
 ## Scope scan
 
@@ -24,11 +24,16 @@ Against [surface what varies](SKILL.md#setup-surfaces-what-varies), detect:
 - repeated sibling wiring instead of one shared shell with varying inputs;
 - setup in `it` that belongs to a scoped condition;
 - setup declared out of order or with the wrong block form;
-- `context`, nested `given "with ..."`, or hidden variations.
+- `context`, nested `given "with ..."`, or hidden variations;
+- `reload` or `Model.find(id)` that only refreshes an inverse association or a derived in-memory reader.
 
 ## Oracle scan
 
-Against the [independent-oracle contract](SKILL.md#assertions-use-independent-oracles), detect the same path helper, enum source, parser, formatter, calculator, or collaborator expression in production and expected-value derivation. Also detect vague example names and raw assertions where the configured expectation API has a matcher.
+Against the [independent-oracle contract](SKILL.md#assertions-use-independent-oracles), detect:
+
+- the same path helper, enum source, parser, formatter, calculator, stub, prior call, or collaborator expression in production and expected-value derivation;
+- SQL shape, memoized state, or a private helper's return as the observation;
+- vague example names and raw assertions where the configured expectation API has a matcher.
 
 ## Seam scan
 

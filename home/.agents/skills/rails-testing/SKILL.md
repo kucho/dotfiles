@@ -15,15 +15,15 @@ Write **WET, receiver-driven Rails/Minitest tests**: each example makes one meth
 
 **Receiver-driven** — a unit example explicitly invokes the described method on `subject`, where `subject` is the method's receiver rather than its result.
 
-**Adapter test** — a controller/integration example invokes the HTTP request inside `it` and observes adapter behavior without `subject`.
+**Adapter test** — a controller/integration example invokes the HTTP request inside `it` and observes status, redirect, or selected markup without `subject`.
 
-**Tautological test** — an expectation derived through the same production collaborator or expression as the actual value. Replace it with an **independent oracle**: a pinned literal, declared fixture fact, or independently calculated invariant.
+**Tautological test** — an expectation derived through the same production collaborator, expression, stub, or prior call as the actual value. Replace it with an **independent oracle**: a pinned literal, declared fixture fact, or independently calculated invariant.
 
 ## Branches
 
 Choose the test branch first:
 
-- **Unit/model/interactor** — `describe` names a method, `subject` is that method's receiver, and every `it` calls the method on `subject`.
+- **Unit/model/interactor** — `describe` names a public method, `subject` is that method's receiver, and every `it` calls the method on `subject`.
 - **Controller/integration** — `describe` names the action, no `subject` is used, and every `it` exercises the action through HTTP helpers.
 
 Load disclosed reference only when its trigger is reached:
@@ -48,7 +48,7 @@ Completion criterion: the active branch is known, including whether `subject` is
 
 - Use class-based minitest/spec tests, normally inheriting from `ActiveSupport::TestCase` or the more specific Rails test base.
 - A unit-test `describe` string must be exactly the method under test: `".method_name"` for class methods or `"#method_name"` for instance methods. Descriptive context belongs in `given` or `it`.
-- Order unit-test `describe` blocks to match the source method order. Skip untested methods; do not alphabetize or regroup by theme.
+- Order unit-test `describe` blocks to match the source method order. Describe public methods; skip private and other untested methods. A private helper is covered by calling the public method whose result or side effect is the feature.
 - Set `subject` to the class for `.method` or an instance for `#method`; keep persistence, HTTP requests, collaborator mutation, and the method invocation outside `subject`.
 - Every `it` explicitly calls `subject.<method_under_test>(...)`, including predicates. An example that proves another method belongs under that method's `describe`.
 - Use `before` for preconditions; invoke the method under test in each `it`.
@@ -67,13 +67,14 @@ Use `do`/`end` for `before` and `after`, and braces for `let` and `subject`. Kee
 - Use `given "..." do` for conditions and variations.
 - **Surface what varies**: place shared wiring in the nearest common scope and redefine only the changing input in each `given`.
 - Nest shared preconditions; inner `given` strings name only the variation because nesting already reads as “with.”
+- Construct the association graph the method reads. Fabricating a child with the parent object updates the in-memory inverse. Use `reload` when the observation is a persisted attribute the method wrote and the receiver still holds the pre-write value.
 
 ### Assertions use independent oracles
 
 - Use `expect(...).must_*` and `expect(...).wont_*` when an expectation matcher exists.
 - For code under test, use block expectations such as `expect { subject.save! }.must_raise(Error)`, `must_change`, `must_output`, and `must_be_silent`.
-- Establish expected values independently. A path helper, enum source, parser, formatter, or other collaborator used by production cannot also establish the expected result.
-- Keep each `it` focused on one observable result, side effect, error, enqueue, output, response, or redirect.
+- Establish expected values independently. A path helper, enum source, parser, formatter, stub, prior call, or other collaborator used by production cannot also establish the expected result.
+- Keep each `it` focused on one feature observation of the described method or action. SQL shape, memoized state, and a private helper's return are covered by that observation.
 
 ### Test data is deliberately synthetic
 
@@ -85,16 +86,16 @@ Use `do`/`end` for `before` and `after`, and braces for `let` and `subject`. Kee
 
 - Name the action with `describe "#show"`, `describe "#create"`, or the matching action name.
 - Declare `before`/`after`, then `let`; adapter tests have no `subject`.
-- Each `it` performs the request and verifies the response or exact redirect through response helpers such as `must_respond_with` and `must_redirect_to`.
+- Each `it` performs the request and verifies status, redirect, or selected markup through response helpers such as `must_respond_with` and `must_redirect_to`.
 - Cover routing, authorization, response, and handoff behavior here; keep business behavior in unit-tested collaborators.
 
 ## Steps
 
 ### 1. Read the receiver
 
-Read enough implementation to know the method order, receiver or action, public API, observable effects, local test base, and collaborator or adapter boundaries.
+Read enough implementation to know the method order, receiver or action, public methods, observable effects, local test base, and collaborator or adapter boundaries.
 
-Completion criterion: the receiver/action, source method order when applicable, existing local test style, relevant test base, and collaborator seam or adapter boundary are known.
+Completion criterion: the receiver/action, public methods and source method order when applicable, existing local test style, relevant test base, and collaborator seam or adapter boundary are known.
 
 ### 2. Shape the test around the contracts
 
@@ -104,9 +105,9 @@ Completion criterion: the skeleton obeys branch, setup-order, source-order, and 
 
 ### 3. Write small examples
 
-Invoke the described method or HTTP action in each `it`, then verify one observation with an independent oracle. Name a returned value `result` when that makes the example clearer.
+Invoke the described method or HTTP action in each `it`, then verify one feature observation with an independent oracle. Name a returned value `result` when that makes the example clearer.
 
-Completion criterion: every unit example explicitly calls `subject.<method_under_test>`, every adapter example performs its request, and every expected value is independent of the production path.
+Completion criterion: every unit example explicitly calls `subject.<method_under_test>`, every adapter example performs its request, and every expected value is an independent feature observation.
 
 ### 4. Check the traps
 
