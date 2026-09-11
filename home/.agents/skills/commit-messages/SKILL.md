@@ -88,9 +88,9 @@ Title contract:
 Body contract (single write shape):
 
 - Paragraph 1: why now and what prior state failed, risked, or made hard.
-- Paragraph 2: what approach this commit takes and why this boundary is right.
+- Paragraph 2: the **through-line** — the new shape as one present-tense move against that prior state, and why this boundary is right. Later sentences continue that move (`instead`, `so`, `then`). A class, file, or method name is a referent inside a sentence, not the next heading.
 - Final paragraph: evidence, verification, rollout, migration, or compatibility details when they affect confidence.
-- Use connected prose. Use bullets only for related evidence; a bullet per file or independent change means split the commit.
+- Use bullets only for related evidence; a bullet per file or independent change means split the commit.
 - Omit the body only when the title carries the full proof for a low-risk obvious change.
 - For a user-visible bug, keep a noun if a reviewer with the diff still needs it to accept this boundary rather than a neighbor. Drop it if it only restates a hunk. Keep: the toast overlay is shared, so click-through belongs on the toast, not this form. Drop: `z-index: 999999`. Keep: pin `format: :html` because `update` prefers turbo_stream and that template replaces `#details-form`, which only exists on Details. Drop: restating the `url:` argument.
 
@@ -98,12 +98,12 @@ Series write shape: do not use the single body contract alone. Apply [`SERIES.md
 
 Every residual and approach sentence must be **grounded**:
 
-- Name the thing in the project's words (package, gem, import path, class, file role) — not an invented category ("framework JS", "surface", "artifact", "graph").
+- Name a referent in the project's words when the sentence needs one (the finder, `state_events`, `publish_on`). Do not invent a category ("framework JS", "surface", "artifact", "graph").
 - State the human premise when it is the reason (e.g. we are not actively developing X and are moving off it). Do not invent a technical euphemism for that premise ("frozen", "treat as immutable").
 - Prefer what the old code *did* over abstract migration talk ("re-resolve the package", "load path ownership").
 - Facts only from step 1. If a claim is not in the diff, tests, logs, or user text, drop it.
 
-Before finishing, re-read each body as a cold reviewer with only that commit: any sentence that needs a sibling commit, unstated jargon, or a policy you just coined fails — rewrite it. For a user-visible bug, also apply the keep/drop test above.
+Before finishing, re-read each body as a cold reviewer with only that commit: restating paragraph 2 must be one sentence of the new shape. If the restatement is a list of classes, files, or tactics, rewrite. Any sentence that needs a sibling commit, unstated jargon, or a policy you just coined also fails. For a user-visible bug, also apply the keep/drop test above.
 
 ```bash
 git commit -m "title" -m "body paragraph"
@@ -116,10 +116,11 @@ Completion criterion:
 - Title follows the title contract; no unknown context invented.
 - Bug fixes satisfy step 3's evidence gate (possessed chain, printed claims evidenced). Do not outline the chain in the body.
 - Every residual/approach sentence is grounded (project nouns; no invented policy or category jargon).
+- Paragraph 2 has a through-line: a cold reviewer restates it as one present-tense sentence of the new shape, not a class or tactic list.
 - Cold re-read of each body passes without sibling commits or unstated terms.
 - **Single**: body follows the single body contract or is intentionally omitted.
 - **Series**: every message in the stack satisfies [`SERIES.md`](SERIES.md) (shared series banner, residual body, cold landing).
 
 ## Calibration
 
-Separate observed behavior from risk: observed is what was measured, reproduced, searched, or tested; risk is what the old code could cause. When verification affects confidence, write the reproduction a reviewer can recognize (what you did and what then worked), not the instrumentation that produced the proof. Do not add a boilerplate test footer unless that is clearer.
+Separate observed behavior from risk: observed is what was measured, reproduced, searched, or tested; risk is what the old code could cause. When verification affects confidence, write the reproduction a reviewer can recognize (what you did and what then worked), not the instrumentation that produced the proof. A measured cost is a clause with a verb (production traces spent 1.7s to 16s on that query). Do not clip a range onto a sentence with an em dash. Do not add a boilerplate test footer unless that is clearer.

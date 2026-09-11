@@ -8,7 +8,7 @@ Name the behavior intended to stay the same. Explain why the new shape is easier
 
 ## Optimization
 
-Prefer concrete evidence over adjectives: timings, query counts, row counts, EXPLAIN shape, AppSignal observations, queue activity, cache/materialization boundaries, or reproducible slow paths. If measurement is unavailable, state the old work shape and the concrete reduction expected.
+Prefer concrete evidence over adjectives: timings, query counts, row counts, EXPLAIN shape, AppSignal observations, queue activity, cache/materialization boundaries, or reproducible slow paths. State the old cost and the new shape as one move; measurements support that move, they do not replace it with a tactic list. If measurement is unavailable, state the old work shape and the concrete reduction expected.
 
 ## Dead-Code Removal
 

@@ -35,7 +35,7 @@ Then prove *this* step:
 - What prior steps in the stack left unpaid, or why this boundary is separate
 - Predecessor by **subject only** when the stack is unmerged; **short SHA + subject** when the predecessor has already landed
 - Residual prose is not a substitute for the banner
-- Residual is **grounded** (see SKILL.md step 4): project nouns for what still hurts; human premise when that is the reason; no category jargon or invented policy
+- Residual is **grounded** (see SKILL.md step 4): a referent in the project's words when the sentence needs one; human premise when that is the reason; no category jargon or invented policy
 
 A shared cleanup premise that spans several commits (e.g. not developing X / moving off X) may repeat in the residuals that need it. That is stack identity for *why we touch X*, not preamble sprawl — still keep it short and do not re-tell the whole arc.
 
