@@ -9,7 +9,7 @@ Always pass `--repo owner/repo` when not in a git directory, or use URLs.
 
 When an issue, PR, or comment has local demo (a screenshot, GIF, or recording of the UI, error, or result), `--attach` it on the same `gh` command that writes the body so it renders inline.
 
-Requires `gh` 2.99.0+, push access, and GitHub.com or GitHub Enterprise Cloud. Images and videos only.
+Images and videos only.
 
 `--attach` is on `create`, `edit`, and `comment` for `gh issue` and `gh pr`. Repeat the flag per file. Write the body through `--body` or `--body-file`.
 
