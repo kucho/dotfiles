@@ -1,8 +1,13 @@
 default_provider = "onepass"
+env = "exec"
 
 [daemon]
 enabled = true
 idle_timeout = "8h"
+
+[mcp]
+tools = ["get_secret", "exec"]
+redact_output = true
 
 [providers.onepass]
 type = "1password"
