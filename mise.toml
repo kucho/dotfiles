@@ -2,7 +2,7 @@
 auto_update = true
 idiomatic_version_file_enable_tools = ["ruby"]
 minimum_release_age = "3d"
-minimum_release_age_excludes = ["pi"]
+minimum_release_age_excludes = ["fnox", "gh", "pi"]
 status = { missing_tools = "always" }
 
 [dotfiles]
