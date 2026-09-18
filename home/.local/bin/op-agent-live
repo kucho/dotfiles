@@ -1,0 +1,23 @@
+#!/bin/sh
+# Exit 0 if a 1Password SSH agent socket accepts connections.
+# A leftover socket file after the app quits still passes `test -S`.
+
+check() {
+  sock=$1
+  [ -S "$sock" ] || return 1
+  python3 -c '
+import socket, sys
+s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+s.settimeout(0.3)
+try:
+    s.connect(sys.argv[1])
+except Exception:
+    sys.exit(1)
+finally:
+    s.close()
+' "$sock"
+}
+
+check "${HOME}/.1password/agent.sock" && exit 0
+check "${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" && exit 0
+exit 1

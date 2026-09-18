@@ -1,21 +1,23 @@
 #!/bin/sh
+# Git SSH signing: 1Password when its agent is up, else ssh-keygen + SSH_AUTH_SOCK.
 # Zed SSH remotes often set SSH_AUTH_SOCK but not SSH_TTY; op-ssh-sign needs both.
 
 if [ -n "$SSH_CONNECTION" ] && [ -z "$SSH_TTY" ]; then
   export SSH_TTY=/dev/pts/0
 fi
 
-if command -v op-ssh-sign >/dev/null 2>&1; then
-  exec op-ssh-sign "$@"
+if ~/.local/bin/op-agent-live 2>/dev/null; then
+  if command -v op-ssh-sign >/dev/null 2>&1; then
+    exec op-ssh-sign "$@"
+  fi
+
+  if [ -x /Applications/1Password.app/Contents/MacOS/op-ssh-sign ]; then
+    exec /Applications/1Password.app/Contents/MacOS/op-ssh-sign "$@"
+  fi
+
+  if [ -x /opt/1Password/op-ssh-sign ]; then
+    exec /opt/1Password/op-ssh-sign "$@"
+  fi
 fi
 
-if [ -x /Applications/1Password.app/Contents/MacOS/op-ssh-sign ]; then
-  exec /Applications/1Password.app/Contents/MacOS/op-ssh-sign "$@"
-fi
-
-if [ -x /opt/1Password/op-ssh-sign ]; then
-  exec /opt/1Password/op-ssh-sign "$@"
-fi
-
-echo "op-ssh-sign-wrapper: op-ssh-sign not found" >&2
-exit 127
+exec ssh-keygen "$@"

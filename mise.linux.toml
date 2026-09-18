@@ -6,7 +6,7 @@ SSH_AUTH_SOCK = """
 {%- if get_env(name="SSH_CONNECTION", default="") -%}
 {{ get_env(name="SSH_AUTH_SOCK", default="") }}
 {%- else -%}
-{{ env.HOME }}/.1password/agent.sock
+{{ get_env(name="XDG_RUNTIME_DIR", default="/run/user/1000") }}/ssh-agent.socket
 {%- endif -%}
 """
 # Grok's Wayland data-control copy reports success but does not stick on KDE;
@@ -15,6 +15,15 @@ GROK_CLIPBOARD_NO_DATA_CONTROL = "1"
 
 [bootstrap.packages]
 "pacman:fish" = "latest"
+
+[bootstrap.linux.systemd.units.ssh-agent]
+description = "OpenSSH key agent"
+exec_start = "~/.config/mise/scripts/ssh-agent-with-key.sh"
+environment = { SSH_AUTH_SOCK = "%t/ssh-agent.socket" }
+restart = "always"
+restart_sec = "5s"
+standard_output = "journal"
+standard_error = "journal"
 
 [bootstrap.linux.systemd.units.elasticsearch]
 description = "Elasticsearch"
