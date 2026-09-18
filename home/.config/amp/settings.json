@@ -4,9 +4,6 @@
 	"amp.git.commit.coauthor.enabled": false,
 	"amp.updates.mode": "auto",
 	"amp.mcpServers": {
-    "appsignal": {
-      "url": "https://appsignal.com/api/mcp"
-    },
     "fnox": {
       "command": "fnox",
       "args": ["mcp"]
