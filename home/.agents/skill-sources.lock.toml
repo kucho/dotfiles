@@ -5,7 +5,7 @@ name = "agent-browser"
 repo = "https://github.com/vercel-labs/agent-browser.git"
 path = "skills/agent-browser"
 ref = "main"
-resolved = "eb05921bad874cd2a1b4fa5d1149f1ed26576cae"
+resolved = "a527a4e5a26217147e61d41edeb82355a83219be"
 
 
 [[skills]]
@@ -13,7 +13,7 @@ name = "domain-modeling"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/domain-modeling"
 ref = "main"
-resolved = "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+resolved = "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
 
 
 [[skills]]
@@ -21,7 +21,7 @@ name = "grilling"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/grilling"
 ref = "main"
-resolved = "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+resolved = "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
 
 
 [[skills]]
@@ -29,7 +29,7 @@ name = "grill-me"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/grill-me"
 ref = "main"
-resolved = "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+resolved = "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
 
 
 [[skills]]
@@ -37,7 +37,7 @@ name = "handoff"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/handoff"
 ref = "main"
-resolved = "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+resolved = "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
 
 
 [[skills]]
@@ -45,7 +45,7 @@ name = "teach"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/teach"
 ref = "main"
-resolved = "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+resolved = "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
 
 
 [[skills]]
@@ -53,7 +53,7 @@ name = "grill-with-docs"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/grill-with-docs"
 ref = "main"
-resolved = "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+resolved = "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
 
 
 [[skills]]
@@ -61,7 +61,7 @@ name = "improve-codebase-architecture"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/improve-codebase-architecture"
 ref = "main"
-resolved = "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+resolved = "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
 
 
 [[skills]]
@@ -69,5 +69,5 @@ name = "writing-for-agents"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/productivity/writing-for-agents"
 ref = "main"
-resolved = "6654f6b60cd9d5be8b54c6fafe44346dabeb3b76"
+resolved = "c55ee46073ed923f86ce59a5eb3b6d895095d1b7"
 
