@@ -46,6 +46,7 @@
 		}
 	},
 	"diff_view_style": "split",
+	"disable_ai": true,
 	"edit_predictions": {
 		"provider": "zed",
 		"mode": "subtle"
