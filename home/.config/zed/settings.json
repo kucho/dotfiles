@@ -40,6 +40,7 @@
 		"dock": "right"
 	},
 	"colorize_brackets": true,
+	"cursor_animation": {"enabled": true},
 	"diagnostics": {
 		"inline": {
 			"enabled": true
