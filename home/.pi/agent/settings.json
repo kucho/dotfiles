@@ -10,7 +10,6 @@
     "npm:pi-bash-live-view",
     "npm:pi-caffeinate",
     "npm:pi-interview",
-    "npm:pi-mcp-adapter",
     "npm:pi-subagents",
     "npm:@ff-labs/pi-fff"
   ],
