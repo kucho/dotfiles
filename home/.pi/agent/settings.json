@@ -3,13 +3,12 @@
   "defaultModel": "grok-4.7",
   "defaultProvider": "xai",
   "defaultThinkingLevel": "high",
-  "lastChangelogVersion": "0.99.1",
+  "lastChangelogVersion": "1.0.0",
   "packages": [
     "npm:@plannotator/pi-extension",
     "npm:glimpseui",
     "npm:pi-caffeinate",
     "npm:pi-interview",
-    "npm:pi-subagents",
     "npm:@ff-labs/pi-fff"
   ],
   "terminal": {
