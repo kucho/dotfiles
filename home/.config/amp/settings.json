@@ -3,11 +3,5 @@
 	"amp.git.commit.ampThread.enabled": false,
 	"amp.git.commit.coauthor.enabled": false,
 	"amp.updates.mode": "auto",
-	"amp.mcpServers": {
-    "fnox": {
-      "command": "fnox",
-      "args": ["mcp"]
-    }
-  },
-  "amp.gauge": "cost"
+	"amp.gauge": "cost"
 }

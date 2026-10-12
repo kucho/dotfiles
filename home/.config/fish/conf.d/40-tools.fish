@@ -6,5 +6,4 @@ if command -q mise
     end
 end
 
-command -q fnox; and fnox activate fish | source
 command -q starship; and starship init fish | source

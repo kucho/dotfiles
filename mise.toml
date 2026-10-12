@@ -32,7 +32,6 @@ aws-cli = { version = "latest", symlink_bins = "true" }
 delta = "latest"
 difftastic = "latest"
 elasticsearch = "7"
-fnox = "latest"
 fzf = "latest"
 gh = "latest"
 go = "latest"

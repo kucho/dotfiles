@@ -105,7 +105,7 @@ Choose the closest row. If a change seems to need two owners, split the shared b
 | Multi-line or non-trivial setup logic | A focused script in `home/.config/mise/scripts/`, invoked by a hook, task, or post-install |
 | First-party agent skill | A dedicated directory under `home/.agents/skills/` |
 | Third-party agent skill | `skill-sources.toml`; regenerate the lock/install state with `agent-skills` |
-| Secret value | 1Password, referenced through fnox; only the mapping belongs in the repository |
+| Secret value | 1Password; do not commit the value |
 
 ### Existing examples
 
