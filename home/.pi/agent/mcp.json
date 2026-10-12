@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "executor": {
-      "url": "https://executor.sh/personal-i5yb/mcp"
+      "url": "https://mcp.executor.sh/mcp"
     }
   }
 }
