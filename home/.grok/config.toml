@@ -48,3 +48,4 @@ page_flip_on_send = false
 permission_mode = "always-approve"
 show_timeline = false
 theme = "auto"
+yolo = true
