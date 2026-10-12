@@ -5,10 +5,8 @@
   "defaultThinkingLevel": "high",
   "lastChangelogVersion": "1.1.0",
   "packages": [
-    "npm:@plannotator/pi-extension",
     "npm:glimpseui",
     "npm:pi-caffeinate",
-    "npm:pi-interview",
     "npm:@ff-labs/pi-fff"
   ],
   "terminal": {
