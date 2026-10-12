@@ -27,7 +27,7 @@ XDG_BIN_HOME = "{{ env.HOME }}/.local/bin"
 _.path = ["~/.local/bin", "~/.cargo/bin"]
 
 [tools]
-agent-browser = "latest"
+agent-browser = { version = "latest", postinstall = "bash ~/.config/mise/scripts/agent-browser-postinstall.sh" }
 aws-cli = { version = "latest", symlink_bins = "true" }
 delta = "latest"
 difftastic = "latest"

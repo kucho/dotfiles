@@ -1,14 +1,6 @@
 # Resolved commits used by agent-skills install.
 
 [[skills]]
-name = "agent-browser"
-repo = "https://github.com/vercel-labs/agent-browser.git"
-path = "skills/agent-browser"
-ref = "main"
-resolved = "a527a4e5a26217147e61d41edeb82355a83219be"
-
-
-[[skills]]
 name = "domain-modeling"
 repo = "https://github.com/mattpocock/skills.git"
 path = "skills/engineering/domain-modeling"

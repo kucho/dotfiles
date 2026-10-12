@@ -3,7 +3,6 @@
 node_modules
 
 # agent-skills managed vendored skills
-/home/.agents/skills/agent-browser/
 /home/.agents/skills/domain-modeling/
 /home/.agents/skills/grilling/
 /home/.agents/skills/grill-me/

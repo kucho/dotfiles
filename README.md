@@ -116,6 +116,7 @@ Follow these patterns instead of creating another way to handle the same problem
 - **SSH:** `Match exec` uses OpenSSH's own conditional rules for OS differences. Commands there run under fish, so use `$HOME` rather than `${HOME}`.
 - **Services:** launchd and systemd settings stay in their OS files, while both call shared scripts for common behavior.
 - **Skills:** edit first-party skill sources directly; update vendored skills through the manifest/lock workflow rather than patching installed directories. `pre-dotfiles` installs vendored skills into `home/` so the single symlink-each pass links them.
+- **agent-browser:** do not add an agent skill for it. `agent-browser skills get` is the guide, served from the install. The aqua binary has no skill files; the postinstall fetches the matching tag's `skills/` and `skill-data/`.
 
 ## Agent workflow
 

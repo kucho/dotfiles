@@ -16,8 +16,15 @@ branch="$(git branch --show-current | tr '/' '-')"
 mkdir -p "tmp/bug-repro/${branch}"
 ```
 
-Before the first browser command, load agent-browser core:
-`agent-browser skills get core`.
+Before the first browser command, load the CLI skill for this install:
+
+```bash
+agent-browser skills get core
+```
+
+That output is the browser usage guide. This skill is the reported-bug
+procedure. Stay on these steps. Do not load `dogfood`; it explores for
+new issues and writes a different report.
 
 ## Steps
 
@@ -48,10 +55,18 @@ the process that was already up, or from the one start this step performed.
 export AGENT_BROWSER_SESSION="$(agent-browser session id --scope worktree --prefix reproduce)"
 ```
 
-Drive a headed Chrome the human can watch. Attach with `--auto-connect` when
-Chrome is already running. Otherwise open headed with `--profile Default`.
+Drive a headed Chrome the human can watch. Attach when Chrome is already
+running:
 
-Open the puma-dev URL from step 1.
+```bash
+agent-browser --auto-connect open "$URL"
+```
+
+Otherwise open headed on the Default profile:
+
+```bash
+agent-browser --headed --profile Default open "$URL"
+```
 
 Completion criterion: a headed window is on the puma-dev host, and a
 snapshot shows the login form or the signed-in app.
