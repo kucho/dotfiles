@@ -1,8 +1,6 @@
 [settings]
 auto_update = true
 idiomatic_version_file_enable_tools = ["ruby"]
-minimum_release_age = "3d"
-minimum_release_age_excludes = ["fnox", "gh", "pi"]
 status = { missing_tools = "always" }
 
 [dotfiles]
@@ -29,14 +27,11 @@ XDG_BIN_HOME = "{{ env.HOME }}/.local/bin"
 _.path = ["~/.local/bin", "~/.cargo/bin"]
 
 [tools]
+agent-browser = "latest"
 aws-cli = { version = "latest", symlink_bins = "true" }
-biome = "latest"
-codex = "latest"
 delta = "latest"
 difftastic = "latest"
 elasticsearch = "7"
-elixir = "latest"
-erlang = "latest"
 fnox = "latest"
 fzf = "latest"
 gh = "latest"
@@ -47,14 +42,12 @@ lsd = "latest"
 mysql = { version = "8", postinstall = "bash ~/.config/mise/scripts/mysql-postinstall.sh" }
 node = "lts"
 pi = "latest"
+pnpm = "latest"
 ruby = { version = "latest", depends = ["rust"] }
 rust = { version = "latest", components = "rust-analyzer,rust-src" }
 starship = { version = "latest", postinstall = "starship preset pure-preset -o ~/.config/starship.toml" }
 usage = "latest"
 zoxide = "latest"
-
-"npm:@herb-tools/language-server" = "latest"
-"npm:agent-browser" = "latest"
 
 # AWS only publishes a macOS zip to aqua; Linux gets a .deb. Use http + postinstall for both.
 [tools."http:session-manager-plugin"]
