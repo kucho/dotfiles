@@ -12,7 +12,7 @@ status = { missing_tools = "always" }
 "~" = { source = "home", mode = "symlink-each", exclude = ["node_modules", ".DS_Store"] }
 
 [bootstrap.hooks.pre-dotfiles]
-run = 'mise exec -- bash -c "bash \$AGENT_SKILLS_DOTFILES/home/.config/mise/scripts/install-agent-skills.sh"'
+run = 'mise exec ruby -- bash -c "bash \$AGENT_SKILLS_DOTFILES/home/.config/mise/scripts/install-agent-skills.sh"'
 
 [bootstrap.hooks.pre-tools]
 run = "bash ~/.config/mise/scripts/ensure-xdg-dirs.sh"
