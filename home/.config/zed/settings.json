@@ -1,210 +1,133 @@
 {
-	"agent": {
-		"sidebar_side": "right",
-		"enabled": false,
-		"dock": "right",
-		"favorite_models": [],
-		"model_parameters": []
-	},
-	"auto_install_extensions": {
-		"biome": true,
-		"catppuccin-icons": true,
-		"codebook": true,
-		"csv": true,
-		"dockerfile": true,
-		"emmet": true,
-		"fish": true,
-		"git-firefly": true,
-		"github-plus-theme": true,
-		"html": true,
-		"loi-paper-theme": true,
-		"ruby": true,
-		"sql": true,
-		"toml": true
-	},
-	"auto_signature_help": false,
-	"autosave": "on_window_change",
-	"buffer_font_family": "Berkeley Mono",
-	"buffer_font_size": 19,
-	"buffer_line_height": "comfortable",
-	"cli_default_open_behavior": "existing_window",
-	"code_actions_on_format": {
-		"source.action.useSortedKeys.biome": true,
-		"source.fixAll": true,
-		"source.fixAll.biome": true,
-		"source.fixAll.eslint": true,
-		"source.fixAll.ruby_lsp": true,
-		"source.organizeImports.biome": true
-	},
-	"collaboration_panel": {
-		"dock": "right"
-	},
-	"colorize_brackets": true,
-	"cursor_animation": {"enabled": true},
-	"diagnostics": {
-		"inline": {
-			"enabled": true
-		}
-	},
-	"diff_view_style": "split",
-	"disable_ai": true,
-	"edit_predictions": {
-		"provider": "zed",
-		"mode": "subtle"
-	},
-	"git_panel": {
-		"tree_view": true,
-		"dock": "left"
-	},
-	"icon_theme": {
-		"mode": "light",
-		"light": "Catppuccin Latte",
-		"dark": "Catppuccin Mocha"
-	},
-	"indent_guides": {
-		"coloring": "indent_aware"
-	},
-	"languages": {
-		"CSS": {
-			"formatter": {
-				"language_server": {
-					"name": "biome"
-				}
-			}
-		},
-		"JavaScript": {
-			"formatter": {
-				"language_server": {
-					"name": "biome"
-				}
-			},
-			"prettier": {
-				"allowed": false
-			}
-		},
-		"JSON": {
-			"formatter": {
-				"language_server": {
-					"name": "biome"
-				}
-			}
-		},
-		"JSONC": {
-			"formatter": {
-				"language_server": {
-					"name": "biome"
-				}
-			}
-		},
-		"Ruby": {
-			"language_servers": ["ruby-lsp", "codebook"]
-		},
-		"SQL": {
-			"formatter": {
-				"external": {
-					"arguments": ["--language", "postgresql"],
-					"command": "sql-formatter"
-				}
-			}
-		},
-		"TSX": {
-			"formatter": {
-				"language_server": {
-					"name": "biome"
-				}
-			},
-			"prettier": {
-				"allowed": false
-			}
-		},
-		"TypeScript": {
-			"formatter": {
-				"language_server": {
-					"name": "biome"
-				}
-			},
-			"prettier": {
-				"allowed": false
-			}
-		},
-		"YAML": {
-			"formatter": "language_server",
-			"prettier": {
-				"allowed": false
-			}
-		}
-	},
-	"lsp": {
-		"ruby-lsp": {
-			"settings": {
-				"use_bundler": false
-			}
-		},
-		"tailwindcss-language-server": {
-			"settings": {
-				"experimental": {
-					"classRegex": ["\\bclass:\\s*['\"]([^'\"]*)['\"]"]
-				},
-				"includeLanguages": {
-					"erb": "html",
-					"ruby": "html"
-				}
-			}
-		},
-		"yaml-language-server": {
-			"settings": {
-				"yaml": {
-					"format": {
-						"enable": true
-					},
-					"keyOrdering": false
-				}
-			}
-		},
-		"vscode-css-language-server": {
-			"settings": {
-				"css": {
-					"lint": {
-						"unknownAtRules": "ignore"
-					}
-				}
-			}
-		}
-	},
-	"outline_panel": {
-		"dock": "left"
-	},
-	"project_panel": {
-		"auto_fold_dirs": true,
-		"dock": "right"
-	},
-	"semantic_tokens": "combined",
-	"sticky_scroll": {
-		"enabled": true
-	},
-	"tab_size": 2,
-	"tabs": {
-		"file_icons": true,
-		"git_status": true,
-		"show_diagnostics": "all"
-	},
-	"telemetry": {
-		"diagnostics": false,
-		"metrics": false
-	},
-	"terminal": {
-		"env": {
-			"GIT_EDITOR": "zed --wait"
-		},
-		"font_family": "Berkeley Mono",
-		"line_height": "standard"
-	},
-	"theme": {
-		"dark": "Loi Paper Dark",
-		"light": "Loi Paper Light",
-		"mode": "system"
-	},
-	"ui_font_family": "SF Pro Text",
-	"ui_font_size": 16,
-	"wrap_guides": [80, 100, 120]
+  "agent": {
+    "enabled": false
+  },
+  "auto_install_extensions": {
+    "catppuccin-icons": true,
+    "codebook": true,
+    "csv": true,
+    "dockerfile": true,
+    "emmet": true,
+    "fish": true,
+    "git-firefly": true,
+    "github-plus-theme": true,
+    "html": true,
+    "loi-paper-theme": true,
+    "ruby": true,
+    "sql": true,
+    "toml": true
+  },
+  "autosave": "on_window_change",
+  "buffer_font_family": "Berkeley Mono",
+  "buffer_font_size": 19,
+  "buffer_line_height": "comfortable",
+  "cli_default_open_behavior": "existing_window",
+  "code_actions_on_format": {
+    "source.fixAll": true,
+    "source.fixAll.eslint": true,
+    "source.fixAll.ruby_lsp": true
+  },
+  "colorize_brackets": true,
+  "cursor_animation": {
+    "enabled": true
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "diff_view_style": "split",
+  "disable_ai": true,
+  "edit_predictions": {
+    "provider": "zed",
+    "mode": "subtle"
+  },
+  "icon_theme": {
+    "mode": "light",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "indent_guides": {
+    "coloring": "indent_aware"
+  },
+  "languages": {
+    "Ruby": {
+      "language_servers": [
+        "ruby-lsp",
+        "codebook"
+      ]
+    },
+    "SQL": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "--language",
+            "postgresql"
+          ],
+          "command": "sql-formatter"
+        }
+      }
+    }
+  },
+  "lsp": {
+    "ruby-lsp": {
+      "settings": {
+        "use_bundler": false
+      }
+    },
+    "tailwindcss-language-server": {
+      "settings": {
+        "experimental": {
+          "classRegex": [
+            "\\bclass:\\s*['\"]([^'\"]*)['\"]"
+          ]
+        },
+        "includeLanguages": {
+          "erb": "html",
+          "ruby": "html"
+        }
+      }
+    },
+    "vscode-css-language-server": {
+      "settings": {
+        "css": {
+          "lint": {
+            "unknownAtRules": "ignore"
+          }
+        }
+      }
+    }
+  },
+  "semantic_tokens": "combined",
+  "sticky_scroll": {
+    "enabled": true
+  },
+  "tab_size": 2,
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+    "show_diagnostics": "all"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "terminal": {
+    "env": {
+      "GIT_EDITOR": "zed --wait"
+    },
+    "font_family": "Berkeley Mono"
+  },
+  "theme": {
+    "dark": "Loi Paper Dark",
+    "light": "Loi Paper Light",
+    "mode": "system"
+  },
+  "ui_font_family": "SF Pro Text",
+  "ui_font_size": 16,
+  "wrap_guides": [
+    80,
+    100,
+    120
+  ]
 }
