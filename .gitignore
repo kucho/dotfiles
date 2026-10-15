@@ -1,13 +1,3 @@
 *known_hosts*
 .DS_Store
 node_modules
-
-# agent-skills managed vendored skills
-/home/.agents/skills/domain-modeling/
-/home/.agents/skills/grilling/
-/home/.agents/skills/grill-me/
-/home/.agents/skills/handoff/
-/home/.agents/skills/teach/
-/home/.agents/skills/grill-with-docs/
-/home/.agents/skills/improve-codebase-architecture/
-/home/.agents/skills/writing-for-agents/

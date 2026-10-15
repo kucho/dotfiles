@@ -78,9 +78,7 @@ On the first run, mise uses the cloned repository. It then links the main config
 | `templates/` | Files rendered by mise when a machine needs different content. |
 | `platform/<os>/home/` | Place for static OS-only files when needed. Mirror their path under `$HOME` and add each one to the OS-specific `[dotfiles]` section. |
 | `home/.config/mise/scripts/` | Bootstrap hooks, post-install scripts, and programs called by services. |
-| `home/.agents/skills/` | First-party skills tracked in Git. Third-party skills are installed from the manifest and lock file. |
-| `home/.agents/skill-sources.toml` | Requested third-party skills. |
-| `home/.agents/skill-sources.lock.toml` | Exact revisions used to install third-party skills. |
+| `home/.agents/skills/` | Agent skills tracked in Git. |
 
 Read the TOML and scripts for implementation details. This table only says which file owns each kind of change.
 
@@ -103,8 +101,7 @@ Choose the closest row. If a change seems to need two owners, split the shared b
 | Setup before tools are installed | A named `[bootstrap.hooks]` phase |
 | Setup requiring installed tools | `[tasks.bootstrap]` |
 | Multi-line or non-trivial setup logic | A focused script in `home/.config/mise/scripts/`, invoked by a hook, task, or post-install |
-| First-party agent skill | A dedicated directory under `home/.agents/skills/` |
-| Third-party agent skill | `skill-sources.toml`; regenerate the lock/install state with `agent-skills` |
+| Agent skill | A dedicated directory under `home/.agents/skills/` |
 | Secret value | 1Password; do not commit the value |
 
 ### Existing examples
@@ -115,7 +112,6 @@ Follow these patterns instead of creating another way to handle the same problem
 - **Ghostty:** the shared config loads an optional `override`; mise renders it from `templates/ghostty-override.tmpl`.
 - **SSH:** `Match exec` uses OpenSSH's own conditional rules for OS differences. Commands there run under fish, so use `$HOME` rather than `${HOME}`.
 - **Services:** launchd and systemd settings stay in their OS files, while both call shared scripts for common behavior.
-- **Skills:** edit first-party skill sources directly; update vendored skills through the manifest/lock workflow rather than patching installed directories. `pre-dotfiles` installs vendored skills into `home/` so the single symlink-each pass links them.
 - **agent-browser:** do not add an agent skill for it. `agent-browser skills get` is the guide, served from the install. The aqua binary has no skill files; the postinstall fetches the matching tag's `skills/` and `skill-data/`.
 
 ## Agent workflow
