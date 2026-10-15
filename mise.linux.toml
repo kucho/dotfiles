@@ -44,3 +44,13 @@ restart_sec = "5s"
 timeout_start_sec = "120"
 standard_output = "journal"
 standard_error = "journal"
+
+[bootstrap.linux.systemd.units.postgres]
+description = "PostgreSQL"
+exec_start = "~/.config/mise/scripts/postgres-server.sh"
+working_directory = "~/.local/share/postgres"
+restart = "always"
+restart_sec = "5s"
+timeout_start_sec = "120"
+standard_output = "journal"
+standard_error = "journal"

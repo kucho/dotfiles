@@ -36,6 +36,14 @@ working_directory = "~/.local/share/mysql"
 stdout_path = "~/Library/Logs/mysql.log"
 stderr_path = "~/Library/Logs/mysql.err.log"
 
+[bootstrap.macos.launchd.agents.postgres]
+program = "~/.config/mise/scripts/postgres-server.sh"
+run_at_load = true
+keep_alive = true
+working_directory = "~/.local/share/postgres"
+stdout_path = "~/Library/Logs/postgres.log"
+stderr_path = "~/Library/Logs/postgres.err.log"
+
 [env]
 SSH_AUTH_SOCK = "{{ env.HOME }}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 HOMEBREW_PREFIX = "/opt/homebrew"

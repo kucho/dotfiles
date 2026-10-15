@@ -20,6 +20,9 @@ XDG_CACHE_HOME = "{{ env.HOME }}/.cache"
 XDG_DATA_HOME = "{{ env.HOME }}/.local/share"
 XDG_STATE_HOME = "{{ env.HOME }}/.local/state"
 XDG_BIN_HOME = "{{ env.HOME }}/.local/bin"
+# Local mise Postgres. Socket dir so `psql` needs no -h; data survives tool upgrades.
+PGDATA = "{{ env.HOME }}/.local/share/postgres/data"
+PGHOST = "/tmp"
 _.path = ["~/.local/bin", "~/.cargo/bin"]
 
 [tools]
@@ -38,6 +41,7 @@ mysql = { version = "8", postinstall = "bash ~/.config/mise/scripts/mysql-postin
 node = "lts"
 pi = "latest"
 pnpm = "latest"
+postgres = { version = "18", postinstall = "bash ~/.config/mise/scripts/postgres-postinstall.sh" }
 ruby = { version = "latest", depends = ["rust"] }
 rust = { version = "latest", components = "rust-analyzer,rust-src" }
 starship = { version = "latest", postinstall = "starship preset pure-preset -o ~/.config/starship.toml" }
