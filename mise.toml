@@ -44,7 +44,7 @@ pnpm = "latest"
 postgres = { version = "18", postinstall = "bash ~/.config/mise/scripts/postgres-postinstall.sh" }
 ruby = { version = "latest", depends = ["rust"] }
 rust = { version = "latest", components = "rust-analyzer,rust-src" }
-starship = { version = "latest", postinstall = "starship preset pure-preset -o ~/.config/starship.toml" }
+starship = { version = "latest", postinstall = "starship preset pure-preset -o ~/.config/starship.toml --force" }
 usage = "latest"
 zoxide = "latest"
 
