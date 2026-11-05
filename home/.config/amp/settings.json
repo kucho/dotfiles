@@ -1,6 +1,5 @@
 {
 	"amp.dangerouslyAllowAll": true,
-	"amp.git.commit.ampThread.enabled": false,
 	"amp.git.commit.coauthor.enabled": false,
 	"amp.updates.mode": "auto",
 	"amp.gauge": "cost"
